@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Noto Sans';
+  font-family: 'Raleway','Noto Sans';
   font-weight: 400;
   font-style: normal;
   src: url('../fonts/Noto-Sans-regular/Noto-Sans-regular.eot');
@@ -13,7 +13,7 @@
 }
 
 @font-face {
-  font-family: 'Noto Sans';
+  font-family: 'Raleway','Noto Sans';
   font-weight: 700;
   font-style: normal;
   src: url('../fonts/Noto-Sans-700/Noto-Sans-700.eot');
@@ -27,7 +27,7 @@
 }
 
 @font-face {
-  font-family: 'Noto Sans';
+  font-family: 'Raleway','Noto Sans';
   font-weight: 400;
   font-style: italic;
   src: url('../fonts/Noto-Sans-italic/Noto-Sans-italic.eot');
@@ -41,7 +41,7 @@
 }
 
 @font-face {
-  font-family: 'Noto Sans';
+  font-family: 'Raleway','Noto Sans';
   font-weight: 700;
   font-style: italic;
   src: url('../fonts/Noto-Sans-700italic/Noto-Sans-700italic.eot');
@@ -57,7 +57,7 @@
 body {
   background-color: #fff;
   padding:50px;
-  font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 14px/1.5 "Raleway", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#727272;
   font-weight:400;
 }
@@ -69,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p, ul, ol, table, pre, dl {
   margin:0 0 20px;
+  text-align: justify;
 }
 
 h1, h2, h3 {
@@ -154,7 +155,9 @@ th {
 }
 
 img {
-  max-width:100%;
+  display:block;
+  margin: auto;
+  padding-bottom:30px;
 }
 
 header {
@@ -321,4 +324,25 @@ footer {
     font-size:12pt;
     color:#444;
   }
+}
+.tables {
+  margin-top:15px;
+}
+.tables td {
+  text-align:center;
+}
+.tables th {
+  text-align:center;
+}
+#feature-type {
+  text-align:left;
+}
+.hr-methods {
+  width:50%;
+  margin:auto;
+  margin-bottom:18px;
+}
+
+.method-name {
+  color: #eee;
 }
