@@ -29,7 +29,7 @@
           <br>
           <a href="https://github.com/sabertooth-io">View package on NPM</a>
           <br>
-          <a href="https://github.com/sabertooth-io">View package on Bower</a>
+          View package on Bower (coming soon!)
         </p>
         <hr>
         <p>
@@ -48,9 +48,7 @@
         </p>
         <hr class="hr-methods">
         <p>
-          <a href="#method-connect">General Methods</a>
-          <br>
-          <a href="#method-acquire">.acquire()</a>
+          <a href="#method-newdevice">Creating a new Bluetooth Device Object</a>
           <br>
           <a href="#method-connect">.connect()</a>
           <br>
@@ -74,22 +72,24 @@
         <h3>
 <a id="overview" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
 
-        <p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and
-          switch to another theme. Your Page content will be preserved.</p>
+        <p>Web-bluetooth is a configurable application framework for integrating bluetooth functionality with client-side Javascript.</p>
 
         <h3>
 <a id="getting-started" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
-        <p>Web-Bluetooth (currently v1.0.0) has a few easy ways to quickly get started each one appealing to your preferences.</p>
+        <p>Web-Bluetooth (currently v1.0.0) has a few easy ways to quickly get started, each one appealing to your preferences.</p>
+        <h4>Download</h4>
+        <p>You can install web-bluetooth by downloading our minified library <a href="http://npmjs.com/" target="_blank">here</a></p>
+        <p>Make the library available by referecing it in your index.html file.</p>
+        <pre><code class="code">&#60;script&#62;/lib/web-bluetooth.js&#60;/script&#62;</code></pre>
+
         <h4>Install with npm</h4>
         <p>You can install web-bluetooth with <a href="http://npmjs.com/" target="_blank">npm</a></p>
-        <p>Require('web-bluetooth') will load all of Bootstrap's jQuery plugins onto the jQuery object.
-        The bootstrap module itself does not export anything. You can manually load Bootstrap's jQuery plugins
-        individually by loading the /js/*.js files under the package's top-level directory.</p>
+        <p>Require('web-bluetooth') will load all of the files necessary to run our library.</p>
         <pre><code class="code">$ npm install web-bluetooth</code></pre>
-        <h4>Install with Bower</h4>
+        <!-- <h4>Install with Bower</h4>
         <p>You can install web-bluetooth with <a href="http://bower.io/" target="_blank">Bower</a></p>
-        <pre><code class="code">$ bower install web-bluetooth</code></pre>
+        <pre><code class="code">$ bower install web-bluetooth</code></pre> -->
 
         <h3 id="general-accessibility">
             <span aria-hidden="true" class="octicon octicon-link"></span>General Accesibility
@@ -230,50 +230,62 @@
         <h3 id="general-methods">
             <span aria-hidden="true" class="octicon octicon-link"></span>General Methods Provided by Library
         </h3>
-        <p>Services are collections of characteristics and relationships to other services that
-          encapsulate the behavior of part of a device. For example, the “Battery Service” exposes
-          the Battery Level of a device broadcasting the “Battery Service” service.</p>
-
-        <h4>
-          <span id="method-acquire" aria-hidden="true" class="octicon octicon-link method-name"></span>.acquire(filters)
+        <h4 class="method-name" id="method-newdevice">
+          Create a New Bluetooth Device Object
         </h4>
-        <p>Method allows you to discover nearby Bluetooth devices.</p>
-        <p>filters (object)</p>
-        <pre><code>{
+        <p>Before calling methods on your Bluetooth device, create a new Bluetooth device object.</p>
+        <pre><code>var fitbit = new Device({
+  namePrefix: 'Surge'
+  services: ['battery_service']
+});</code></pre>
+        <p>In the example above, we have created a new Bluetooth device object titled 'blue' by requesting the
+          object with it's 'namePrefix' and a service of 'battery service'.
+          <br>
+          Device is a constructor that takes in an object corresponding to attributes on the bluetooth device.
+          Below is a schema for what can be used to connect to a device. At least one option is needed to request a device.
+          <pre><code>{
   name: 'device_name',
+  namePrefix: 'devicePrefix',
   uuid: 'uuid',
   service: 'service'
 }</code></pre>
-        <p>Instantiate a new device object. Then, call the connect method.</p>
-        <pre><code>let connectedDevice = device;
-
-bluetooth.acquire(connectedDevice,(server) => {
-  connectedDevice = device;
-};</code></pre>
-
-        <h4>
-          <span id="method-connect" aria-hidden="true" class="octicon octicon-link method-name"></span>.connect()
+          <code>'name': </code>is the name (hardware) of the device<br>
+          <code>'namePrefix': </code>looks for a name starting with namePrefix<br>
+          <code>'services': </code>represents a 128-bit UUID. A valid UUID is a string that matches
+          the regexp '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/'<br>
+          <code>'uuid': </code>collection of characteristics and the relationships to other services
+          encapsulate the behavior of part of a device
+        </p>
+        <hr>
+        <h4 class="method-name" id="method-connect">
+          .connect()
         </h4>
         <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
-        <pre><code>bluetooth.connect(connectedDevice,(server) => {
+        <pre><code>fitbit.connect(connectedDevice,(server) => {
   connectedDevice = device;
 };</code></pre>
-
-        <h4>
-          <span id="method-disconnect" aria-hidden="true" class="octicon octicon-link method-name"></span>.disconnect()
+        <hr>
+        <h4 class="method-name" id="method-disconnect">
+          .disconnect()
         </h4>
         <p>Method disconnects you from the device.</p>
-        <pre><code>bluetooth.disconnect();</code></pre>
-
-        <h4>
-          <span id="method-getvalue" aria-hidden="true" class="octicon octicon-link method-name"></span>.getValue()
+        <pre><code>fitbit.disconnect();</code></pre>
+        <hr>
+        <h4 class="method-name" id="method-getvalue">
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue('service')
         </h4>
-        <p>Method reads the value from the device you are connected to by passing in the characteristic.</p>
-        <pre><code>bluetooth.getValue('battery_service');</code></pre>
+        <p>Method reads the value from the device you are connected to by passing in the characteristic as a string.</p>
+        <pre><code>fitbit
+  .getValue('battery_service')
+    .then(value => {
+      console.log(value);
+    });</code></pre>
         <p>In the above example, .getValue() returns the current battery level as a percentage from 0% to 100%;
           0% represents a battery that is fully discharged, 100% represents a battery that is fully charged.</p>
-        <h3>
-          <span id="demo" aria-hidden="true" class="octicon octicon-link"></span>Demo
+        <hr>
+
+        <h3 id="demo">
+          Demo
         </h3>
         <h4>Battery Service</h4>
         <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
@@ -289,9 +301,7 @@ bluetooth.acquire(connectedDevice,(server) => {
           <h3>
             <span id="authors-contributors" aria-hidden="true" class="octicon octicon-link"></span>Authors and Contributors
           </h3>
-          <p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element
-            will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>),
-            and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+          <p>Sabertooth is a team of four software developers enthusiastic to be contributing to the open source community. Visit their GitHub page for more information.</p>
       </section>
     </div>
     <script src="javascripts/scale.fix.js"></script>
