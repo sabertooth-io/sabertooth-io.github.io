@@ -20,7 +20,7 @@
     <div class="wrapper">
       <header>
         <h1>web-bluetooth</h1>
-        <h3>A Javascript Library for Bluetooth Low Energy Devices</h3>
+        <h3>A Javascript Library for interacting with Bluetooth Low Energy Devices.</h3>
         <p></p>
 
 
@@ -50,9 +50,13 @@
         <p>
           <a href="#method-connect">General Methods</a>
           <br>
+          <a href="#method-acquire">.acquire()</a>
+          <br>
           <a href="#method-connect">.connect()</a>
           <br>
           <a href="#method-disconnect">.disconnect()</a>
+          <br>
+          <a href="#method-getvalue">.getValue()</a>
         </p>
         <hr>
         <h4>Demo</h4>
@@ -231,31 +235,43 @@
           the Battery Level of a device broadcasting the “Battery Service” service.</p>
 
         <h4>
+          <span id="method-acquire" aria-hidden="true" class="octicon octicon-link method-name"></span>.acquire(filters)
+        </h4>
+        <p>Method allows you to discover nearby Bluetooth devices.</p>
+        <p>filters (object)</p>
+        <pre><code>{
+  name: 'device_name',
+  uuid: 'uuid',
+  service: 'service'
+}</code></pre>
+        <p>Instantiate a new device object. Then, call the connect method.</p>
+        <pre><code>let connectedDevice = device;
+
+bluetooth.acquire(connectedDevice,(server) => {
+  connectedDevice = device;
+};</code></pre>
+
+        <h4>
           <span id="method-connect" aria-hidden="true" class="octicon octicon-link method-name"></span>.connect()
         </h4>
         <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
-        <pre><code>//Connecting to a device.
-let connectedDevice = device;
-
-bluetooth.connect(connectedDevice,(server) => {
+        <pre><code>bluetooth.connect(connectedDevice,(server) => {
   connectedDevice = device;
-}
-</code></pre>
-        <p>The above block of code establishes a connection with a device.</p>
+};</code></pre>
 
         <h4>
           <span id="method-disconnect" aria-hidden="true" class="octicon octicon-link method-name"></span>.disconnect()
         </h4>
-        <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
-        <pre><code>//Connecting to a device.
-let connectedDevice = device;
+        <p>Method disconnects you from the device.</p>
+        <pre><code>bluetooth.disconnect();</code></pre>
 
-bluetooth.connect(connectedDevice,(server) => {
-  connectedDevice = device;
-}
-</code></pre>
-        <p>The above block of code establishes a connection with a device.</p>
-
+        <h4>
+          <span id="method-getvalue" aria-hidden="true" class="octicon octicon-link method-name"></span>.getValue()
+        </h4>
+        <p>Method reads the value from the device you are connected to by passing in the characteristic.</p>
+        <pre><code>bluetooth.getValue('battery_service');</code></pre>
+        <p>In the above example, .getValue() returns the current battery level as a percentage from 0% to 100%;
+          0% represents a battery that is fully discharged, 100% represents a battery that is fully charged.</p>
         <h3>
           <span id="demo" aria-hidden="true" class="octicon octicon-link"></span>Demo
         </h3>
