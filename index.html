@@ -212,9 +212,7 @@ service: ['heart_rate']
           .connect()
         </h4>
         <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
-        <pre><code>fitbit.connect(connectedDevice,(server) => {
-  connectedDevice = device;
-};</code></pre>
+        <pre><code>fitbit.connect();</code></pre>
         <hr>
         <h4 class="method-name" id="method-disconnect">
           .disconnect()
@@ -222,17 +220,30 @@ service: ['heart_rate']
         <p>Method disconnects you from the device.</p>
         <pre><code>fitbit.disconnect();</code></pre>
         <hr>
-        <h4 class="method-name" id="method-getvalue">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue('service')
+        <h4 class="method-name" id="method-disconnect">
+          .connected()
         </h4>
-        <p>Method reads the value from the device you are connected to by passing in the characteristic as a string.</p>
-        <pre><code>fitbit
-  .getValue('battery_service')
-    .then(value => {
-      console.log(value);
-    });</code></pre>
-        <p>In the above example, .getValue() returns the current battery level as a percentage from 0% to 100%;
-          0% represents a battery that is fully discharged, 100% represents a battery that is fully charged.</p>
+        <p>Method returns the current connection status of the device where <code>true</code> is connected and <code>false</code> is disconnected.</p>
+        <pre><code>fitbit.connected();</code></pre>
+        <hr>
+        <h4 class="method-name" id="method-getvalue">
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue(characteristic)
+        </h4>
+        <p>Method attempts to read the value of provided <code>characteristic</code> from a connected <code>BluetoothDevice</code> instance.
+        <br>
+        <u>Parameters:</u>
+        <br>
+        <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance.
+        <br>
+        <u>Returns:</u>
+        <br>
+        An <code>object</code> containing the <a href="https://tc39.github.io/ecma262/#sec-arraybuffer-constructor">ArrayBuffer</a> value read from the connected <code>BluetoothDevice</code> instance saved to the key <code>.rawValue</code>. For characteristics fully supported by Sabertooth, the return <code>object</code> will also include any parsed values for available descriptors of the requested characteristic as key-vlaue pairs with the descriptor as the key and the parsed value as the value.
+        </p>
+        <pre><code>fitbit.getValue('battery_level')
+      .then(value => {
+        console.log(value.battery_level);
+      });</code></pre>
+        <p>In the above example, the <code>.getValue()</code> method is called on the <code>BluetoothDevice</code> instance <code>fitbit</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
         <hr>
         <h4 class="method-name" id="method-postvalue">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.writeValue('characteristic', 'value')
