@@ -240,7 +240,7 @@
 });</code></pre>
         <p>In the example above, we have created a new Bluetooth device object titled 'blue' by requesting the
           object with it's 'namePrefix' and a service of 'battery service'.
-          <br>
+          <br><br>
           Device is a constructor that takes in an object corresponding to attributes on the bluetooth device.
           Below is a schema for what can be used to connect to a device. At least one option is needed to request a device.
           <pre><code>{
@@ -284,15 +284,16 @@
           0% represents a battery that is fully discharged, 100% represents a battery that is fully charged.</p>
         <hr>
         <h4 class="method-name" id="method-postvalue">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.postValue('service', 'value')
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.writeValue('characteristic', 'value')
         </h4>
         <p>Method takes a characteristic name and value. It changes the value of the specified characteristic to the value that was passed in.</p>
         <pre><code>fitbit
-  .postValue('gap.device_name', 'myFitbit )
+  .writeValue('gap.device_name', 'myFitbit' )
     .then(changedCharacteristicName => {
       console.log(changedCharacteristicName);
     }); </code></pre>
         <p>In the above example, .postValue() changes the name of the instantiated device to myFitbit.</p>
+        <hr>
         <h4 class="method-name" id="method-startnotifications">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.startNotifications('characteristic', 'value')
         </h4>
@@ -303,6 +304,7 @@
     console.log(newHR.heartRate);
 }); </code></pre>
         <p>This method allows us to access streams of data. In the above example, .startNotifications() accesses the heart_rate_measurement characteristic on a fitbit, and prints the heart rate to the console every time an event fires. This 'notifies' us of the heart rate at regular intervals. </p>
+        <hr>
          <h4 class="method-name" id="method-startnotifications">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.stopNotifications('characteristic')
         </h4>
