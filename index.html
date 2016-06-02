@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
 
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Sabertooth-io.GitHub.io by sabertooth-io</title>
-
+    <title>Sabertooth</title>
+    <link rel="icon" href="https://avatars3.githubusercontent.com/u/19232538?v=3&s=200">
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width">
@@ -14,324 +14,318 @@
     <![endif]-->
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="wrapper">
-      <header>
-        <h1>web-bluetooth</h1>
-        <h3>A Javascript Library for interacting with Bluetooth Low Energy Devices.</h3>
-        <p></p>
+        <header>
+            <img id='imgLogo' src="https://avatars3.githubusercontent.com/u/19232538?v=3&s=200" />
+            <h1>Sabertooth</h1>
+
+            <h3>A Javascript Library for interacting with Bluetooth Low Energy Devices.</h3>
+            <p></p>
 
 
-        <p class="view">
-          <a href="https://github.com/sabertooth-io">View on GitHub</a>
-          <br>
-          <a href="https://npmjs.com/package/web-bluetooth">View package on NPM</a>
-          <br>
-          View package on Bower (coming soon!)
-        </p>
-        <hr>
-        <p>
-          <a href="#intro">Intro</a>
-          <br>
-          <a href="#overview">Overview</a>
-          <br>
-          <a href="#getting-started">Getting Started</a>
-        </p>
-        <hr>
-        <h4>Docs</h4>
-        <p>
-          <a href="#general-accessibility">General Accessibility</a>
-          <br>
-          <a href="#gatt-support">GATT Services Support</a>
-        </p>
-        <hr class="hr-methods">
-        <p>
-          <a href="#method-newdevice">Creating a new Bluetooth Device Object</a>
-          <br>
-          <a href="#method-connect">.connect()</a>
-          <br>
-          <a href="#method-disconnect">.disconnect()</a>
-          <br>
-          <a href="#method-getvalue">.getValue()</a>
-        </p>
-        <hr>
-        <h4>Demo</h4>
-        <p>
-          <a href="#demo">Battery Service</a>
-        </p>
-      </header>
-      <section>
-        <h3>
+            <p class="view">
+                <a href="https://github.com/sabertooth-io">View on GitHub</a>
+                <br>
+                <a href="https://npmjs.com/package/web-bluetooth">View package on NPM</a>
+                <br> View package on Bower (coming soon!)
+            </p>
+            <hr>
+            <p>
+                <a href="#intro">Intro</a>
+                <br>
+                <a href="#overview">Overview</a>
+                <br>
+                <a href="#getting-started">Getting Started</a>
+            </p>
+            <hr>
+            <h4>Docs</h4>
+            <p>
+                <a href="#general-accessibility">General Accessibility</a>
+                <br>
+                <a href="#gatt-support">GATT Services Support</a>
+            </p>
+            <hr class="hr-methods">
+            <p>
+                <a href="#method-newdevice">Creating a new Bluetooth Device Object</a>
+                <br>
+                <a href="#method-connect">.connect()</a>
+                <br>
+                <a href="#method-disconnect">.disconnect()</a>
+                <br>
+                <a href="#method-getvalue">.getValue()</a>
+            </p>
+            <hr>
+            <h4>Demo</h4>
+            <p>
+                <a href="#demo">Battery Service</a>
+            </p>
+        </header>
+        <section>
+            <h3>
 <a id="intro" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bridging the gap between the web and the physical world through Bluetooth.</h3>
-        <img class="intro-infographic" src="assets/BLE-WebInfographic.svg" height="80%" width="80%" horizontal-align="center">
-        <p>Previously, interacting with Bluetooth devices was limited to native applications. Access to connect, read, and write from Bluetooth devices is now made available to web applications thanks to the Web Bluetooth API and modern web browsers like
-          Chrome and Firefox, Opera who are incresingly adding support for new features in the Web Bluetooth API Spec.</p>
+            <img class="intro-infographic" src="assets/BLE-WebInfographic.svg" height="80%" width="80%" horizontal-align="center">
+            <p>Previously, interacting with Bluetooth devices was limited to native applications. Access to connect, read, and write from Bluetooth devices is now made available to web applications thanks to the Web Bluetooth API and modern web browsers
+                like Chrome and Firefox, Opera who are incresingly adding support for new features in the Web Bluetooth API Spec.</p>
 
-        <h3>
+            <h3>
 <a id="overview" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
 
-        <p>Web-bluetooth is a configurable application framework for integrating bluetooth functionality with client-side Javascript.</p>
+            <p>Web-bluetooth is a configurable application framework for integrating bluetooth functionality with client-side Javascript.</p>
 
-        <h3>
+            <h3>
 <a id="getting-started" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
-        <p>Web-Bluetooth (currently v1.0.0) has a few easy ways to quickly get started, each one appealing to your preferences.</p>
-        <h4>Download</h4>
-        <p>You can install web-bluetooth by downloading our minified library <a href="https://github.com/sabertooth-io/web-bluetooth/archive/master.zip" target="_blank">here</a></p>
-        <p>Make the library available by referencing it in your index.html file.</p>
-        <pre><code class="code">&#60;script&#62;/lib/web-bluetooth.js&#60;/script&#62;</code></pre>
+            <p>Web-Bluetooth (currently v1.0.0) has a few easy ways to quickly get started, each one appealing to your preferences.</p>
+            <h4>Download</h4>
+            <p>You can install web-bluetooth by downloading our minified library <a href="https://github.com/sabertooth-io/web-bluetooth/archive/master.zip" target="_blank">here</a></p>
+            <p>Make the library available by referencing it in your index.html file.</p>
+            <pre><code class="code">&#60;script&#62;/lib/web-bluetooth.js&#60;/script&#62;</code></pre>
 
-        <h4>Install with npm</h4>
-        <p>You can install web-bluetooth with <a href="https://npmjs.com/package/web-bluetooth" target="_blank">npm</a></p>
-        <p>Require('web-bluetooth') will load all of the files necessary to run our library.</p>
-        <pre><code class="code">$ npm install web-bluetooth</code></pre>
-        <!-- <h4>Install with Bower</h4>
+            <h4>Install with npm</h4>
+            <p>You can install web-bluetooth with <a href="https://npmjs.com/package/web-bluetooth" target="_blank">npm</a></p>
+            <p>Require('web-bluetooth') will load all of the files necessary to run our library.</p>
+            <pre><code class="code">$ npm install web-bluetooth</code></pre>
+            <!-- <h4>Install with Bower</h4>
         <p>You can install web-bluetooth with <a href="http://bower.io/" target="_blank">Bower</a></p>
         <pre><code class="code">$ bower install web-bluetooth</code></pre> -->
 
-        <h3 id="general-accessibility">
+            <h3 id="general-accessibility">
             <span aria-hidden="true" class="octicon octicon-link"></span>General Accesibility
         </h3>
-        <p>While the Web Bluetooth API is still in development, features have been made available.
-          This library has made available several important features to develop web applications
-          using Bluetooth connections.</p>
-          <div>
-            <blockquote>
-              Note: The Web Bluetooth API is still in development and many features have not been
-              implemented across browsers. For the current status of the API, please follow this
-              <a href="https://webbluetoothcg.github.io/web-bluetooth/" target="_blank">link</a>.
-            </blockquote>
-          </div>
-        <table class="tables">
-          <tr>
-            <th id="feature-type">Feature</th>
-            <th>ChromeOS</th>
-            <th>Android Mobile</th>
-            <th>MacOSX</th>
-          </tr>
-          <tr>
-            <td id="feature-type">Device Discovery</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Device Connecting</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Device Disconnecting</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Device Services Read</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td></td>
-          </tr>
-        </table>
-        <h3 id="gatt-support">
+            <p>While the Web Bluetooth API is still in development, features have been made available. This library has made available several important features to develop web applications using Bluetooth connections.</p>
+            <div>
+                <blockquote>
+                    Note: The Web Bluetooth API is still in development and many features have not been implemented across browsers. For the current status of the API, please follow this
+                    <a href="https://webbluetoothcg.github.io/web-bluetooth/" target="_blank">link</a>.
+                </blockquote>
+            </div>
+            <table class="tables">
+                <tr>
+                    <th id="feature-type">Feature</th>
+                    <th>ChromeOS</th>
+                    <th>Android Mobile</th>
+                    <th>MacOSX</th>
+                </tr>
+                <tr>
+                    <td id="feature-type">Device Discovery</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Device Connecting</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Device Disconnecting</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Device Services Read</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td></td>
+                </tr>
+            </table>
+            <h3 id="gatt-support">
             <span aria-hidden="true" class="octicon octicon-link"></span>GATT Services Support
         </h3>
-        <p>Services are collections of characteristics and relationships to other services that
-          encapsulate the behavior of part of a device. For example, the “Battery Service” exposes
-          the Battery Level of a device broadcasting the “Battery Service” service.</p>
-          <p>This library abstracts over core GATT Service types with special attention to service
-          types that are common and that are most applicable in this current stage of Bluetooth
-          device availability.</p>
-          <p>For the full list of normative Services click <a href="https://webbluetoothcg.github.io/web-bluetooth/" target="_blank">here</a>. As the Web Bluetooth API continues to be
-          developed and as this library matures, more service types will be made available.</p>
-        <table class="tables">
-          <tr>
-            <th id="feature-type">Service</th>
-            <th>Supported</th>
-            <th>Spec Type</th>
-            <th>Assigned Number</th>
-          </tr>
-          <tr>
-            <td id="feature-type">Alert Notification</td>
-            <td></td>
-            <td>'alert-notification'</td>
-            <td>0x1811</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Battery Service</td>
-            <td>✓</td>
-            <td>'battery_service'</td>
-            <td>0x180F</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Blood Pressure</td>
-            <td></td>
-            <td>'blood_pressure'</td>
-            <td>0x1810</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Cycling Power</td>
-            <td></td>
-            <td>'cycling_power'</td>
-            <td>0x1818</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Cycling Speed and Cadence</td>
-            <td></td>
-            <td>'cycling_speed_and_cadence'</td>
-            <td>0x1816</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Device Info</td>
-            <td>✓</td>
-            <td>'device_information'</td>
-            <td>0x180A</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Generic Access</td>
-            <td>✓</td>
-            <td>'generic_access'</td>
-            <td>0x1800</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Generic Attribute</td>
-            <td>✓</td>
-            <td>'generic_attribute'</td>
-            <td>0x1801</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Health Thermometer</td>
-            <td></td>
-            <td>'health-thermometer'</td>
-            <td>0x1809</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Heart Rate</td>
-            <td>✓</td>
-            <td>'health-heart_rate'</td>
-            <td>0x180D</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Running Speed and Cadence</td>
-            <td></td>
-            <td>'running_speed_and_cadence'</td>
-            <td>0x1814</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Tx Power</td>
-            <td>✓</td>
-            <td>'tx_power'</td>
-            <td>0x1804</td>
-          </tr>
-        </table>
-        <h3 id="general-methods">
+            <p>Services are collections of characteristics and relationships to other services that encapsulate the behavior of part of a device. For example, the “Battery Service” exposes the Battery Level of a device broadcasting the “Battery Service”
+                service.</p>
+            <p>This library abstracts over core GATT Service types with special attention to service types that are common and that are most applicable in this current stage of Bluetooth device availability.</p>
+            <p>For the full list of normative Services click <a href="https://webbluetoothcg.github.io/web-bluetooth/" target="_blank">here</a>. As the Web Bluetooth API continues to be developed and as this library matures, more service types will be made
+                available.</p>
+            <table class="tables">
+                <tr>
+                    <th id="feature-type">Service</th>
+                    <th>Supported</th>
+                    <th>Spec Type</th>
+                    <th>Assigned Number</th>
+                </tr>
+                <tr>
+                    <td id="feature-type">Alert Notification</td>
+                    <td></td>
+                    <td>'alert-notification'</td>
+                    <td>0x1811</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Battery Service</td>
+                    <td>✓</td>
+                    <td>'battery_service'</td>
+                    <td>0x180F</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Blood Pressure</td>
+                    <td></td>
+                    <td>'blood_pressure'</td>
+                    <td>0x1810</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Cycling Power</td>
+                    <td></td>
+                    <td>'cycling_power'</td>
+                    <td>0x1818</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Cycling Speed and Cadence</td>
+                    <td></td>
+                    <td>'cycling_speed_and_cadence'</td>
+                    <td>0x1816</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Device Info</td>
+                    <td>✓</td>
+                    <td>'device_information'</td>
+                    <td>0x180A</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Generic Access</td>
+                    <td>✓</td>
+                    <td>'generic_access'</td>
+                    <td>0x1800</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Generic Attribute</td>
+                    <td>✓</td>
+                    <td>'generic_attribute'</td>
+                    <td>0x1801</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Health Thermometer</td>
+                    <td></td>
+                    <td>'health-thermometer'</td>
+                    <td>0x1809</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Heart Rate</td>
+                    <td>✓</td>
+                    <td>'health-heart_rate'</td>
+                    <td>0x180D</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Running Speed and Cadence</td>
+                    <td></td>
+                    <td>'running_speed_and_cadence'</td>
+                    <td>0x1814</td>
+                </tr>
+                <tr>
+                    <td id="feature-type">Tx Power</td>
+                    <td>✓</td>
+                    <td>'tx_power'</td>
+                    <td>0x1804</td>
+                </tr>
+            </table>
+            <h3 id="general-methods">
             <span aria-hidden="true" class="octicon octicon-link"></span>General Methods Provided by Library
         </h3>
-        <h4 class="method-name" id="method-newdevice">
+            <h4 class="method-name" id="method-newdevice">
           Create a New Bluetooth Device Object
         </h4>
-        <p>Before calling methods on your Bluetooth device, create a new Bluetooth device object.</p>
-        <pre><code>var fitbit = new Device({
+            <p>Before calling methods on your Bluetooth device, create a new Bluetooth device object.</p>
+            <pre><code>var fitbit = new Device({
   namePrefix: 'Surge'
   services: ['battery_service']
 });</code></pre>
-        <p>In the example above, we have created a new Bluetooth device object titled 'blue' by requesting the
-          object with it's 'namePrefix' and a service of 'battery service'.
-          <br>
-          Device is a constructor that takes in an object corresponding to attributes on the bluetooth device.
-          Below is a schema for what can be used to connect to a device. At least one option is needed to request a device.
-          <pre><code>{
+            <p>In the example above, we have created a new Bluetooth device object titled 'blue' by requesting the object with it's 'namePrefix' and a service of 'battery service'.
+                <br> Device is a constructor that takes in an object corresponding to attributes on the bluetooth device. Below is a schema for what can be used to connect to a device. At least one option is needed to request a device.
+                <pre><code>{
   name: 'device_name',
   namePrefix: 'devicePrefix',
   uuid: 'uuid',
   service: 'service'
 }</code></pre>
-          <code>'name': </code>is the name (hardware) of the device<br>
-          <code>'namePrefix': </code>looks for a name starting with namePrefix<br>
-          <code>'services': </code>represents a 128-bit UUID. A valid UUID is a string that matches
-          the regexp '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/'<br>
-          <code>'uuid': </code>collection of characteristics and the relationships to other services
-          encapsulate the behavior of part of a device
-        </p>
-        <hr>
-        <h4 class="method-name" id="method-connect">
+                <code>'name': </code>is the name (hardware) of the device
+                <br>
+                <code>'namePrefix': </code>looks for a name starting with namePrefix
+                <br>
+                <code>'services': </code>represents a 128-bit UUID. A valid UUID is a string that matches the regexp '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/'
+                <br>
+                <code>'uuid': </code>collection of characteristics and the relationships to other services encapsulate the behavior of part of a device
+            </p>
+            <hr>
+            <h4 class="method-name" id="method-connect">
           .connect()
         </h4>
-        <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
-        <pre><code>fitbit.connect(connectedDevice,(server) => {
+            <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
+            <pre><code>fitbit.connect(connectedDevice,(server) => {
   connectedDevice = device;
 };</code></pre>
-        <hr>
-        <h4 class="method-name" id="method-disconnect">
+            <hr>
+            <h4 class="method-name" id="method-disconnect">
           .disconnect()
         </h4>
-        <p>Method disconnects you from the device.</p>
-        <pre><code>fitbit.disconnect();</code></pre>
-        <hr>
-        <h4 class="method-name" id="method-getvalue">
+            <p>Method disconnects you from the device.</p>
+            <pre><code>fitbit.disconnect();</code></pre>
+            <hr>
+            <h4 class="method-name" id="method-getvalue">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue('service')
         </h4>
-        <p>Method reads the value from the device you are connected to by passing in the characteristic as a string.</p>
-        <pre><code>fitbit
+            <p>Method reads the value from the device you are connected to by passing in the characteristic as a string.</p>
+            <pre><code>fitbit
   .getValue('battery_service')
     .then(value => {
       console.log(value);
     });</code></pre>
-        <p>In the above example, .getValue() returns the current battery level as a percentage from 0% to 100%;
-          0% represents a battery that is fully discharged, 100% represents a battery that is fully charged.</p>
-        <hr>
-        <h4 class="method-name" id="method-postvalue">
+            <p>In the above example, .getValue() returns the current battery level as a percentage from 0% to 100%; 0% represents a battery that is fully discharged, 100% represents a battery that is fully charged.</p>
+            <hr>
+            <h4 class="method-name" id="method-postvalue">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.postValue('service', 'value')
         </h4>
-        <p>Method takes a characteristic name and value. It changes the value of the specified characteristic to the value that was passed in.</p>
-        <pre><code>fitbit
+            <p>Method takes a characteristic name and value. It changes the value of the specified characteristic to the value that was passed in.</p>
+            <pre><code>fitbit
   .postValue('gap.device_name', 'myFitbit )
     .then(changedCharacteristicName => {
       console.log(changedCharacteristicName);
     }); </code></pre>
-        <p>In the above example, .postValue() changes the name of the instantiated device to myFitbit.</p>
-        <h4 class="method-name" id="method-startnotifications">
+            <p>In the above example, .postValue() changes the name of the instantiated device to myFitbit.</p>
+            <h4 class="method-name" id="method-startnotifications">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.startNotifications('characteristic', 'value')
         </h4>
-        <p>Method takes a characteristic name and a callback function. Provided that the characteristic has a 'notify' property, .startNotifications() will pass the event object broadcasted by the characteristic as the parameter of the callback, and run the callback any time a new event occurs.</p>
-        <pre><code>fitbit
+            <p>Method takes a characteristic name and a callback function. Provided that the characteristic has a 'notify' property, .startNotifications() will pass the event object broadcasted by the characteristic as the parameter of the callback, and
+                run the callback any time a new event occurs.</p>
+            <pre><code>fitbit
   .startNotifications('heart_rate_measurement', e => {
     var newHR = parseHeartRate(e.target.value);
     console.log(newHR.heartRate);
 }); </code></pre>
-        <p>This method allows us to access streams of data. In the above example, .startNotifications() accesses the heart_rate_measurement characteristic on a fitbit, and prints the heart rate to the console every time an event fires. This 'notifies' us of the heart rate at regular intervals. </p>
-         <h4 class="method-name" id="method-startnotifications">
+            <p>This method allows us to access streams of data. In the above example, .startNotifications() accesses the heart_rate_measurement characteristic on a fitbit, and prints the heart rate to the console every time an event fires. This 'notifies'
+                us of the heart rate at regular intervals. </p>
+            <h4 class="method-name" id="method-startnotifications">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.stopNotifications('characteristic')
         </h4>
-         <p>This method stops the notifications streaming from the specified characteristic on the device.</p>
-         <pre><code>fitbit
+            <p>This method stops the notifications streaming from the specified characteristic on the device.</p>
+            <pre><code>fitbit
   .stopNotifications('heart_rate_measurement'); </code></pre>
-        <hr>
-        <h3 id="demo">
+            <hr>
+            <h3 id="demo">
           Demo
         </h3>
-        <h4>Battery Service</h4>
-        <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
-        <p>This demo uses the Web-Bluetooth library to connect to a device broadcasting a Battery Service characteristic and reads it's level.</p>
-        <p>
-          <a href="http://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
-          <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank">Visit the GitHub page.</a>
-        </p>
-        <p>Notes: <br>
-          • Requires Android 6.0 Marshmellow or ChromeOS.<br>
-          • Enable the 'Web Bluetooth' flag.
-        </p>
-          <h3>
+            <h4>Battery Service</h4>
+            <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
+            <p>This demo uses the Web-Bluetooth library to connect to a device broadcasting a Battery Service characteristic and reads it's level.</p>
+            <p>
+                <a href="http://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
+                <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank">Visit the GitHub page.</a>
+            </p>
+            <p>Notes:
+                <br> • Requires Android 6.0 Marshmellow or ChromeOS.
+                <br> • Enable the 'Web Bluetooth' flag.
+            </p>
+            <h3>
             <span id="authors-contributors" aria-hidden="true" class="octicon octicon-link"></span>Authors and Contributors
           </h3>
-          <p>Sabertooth is a team of four software developers enthusiastic to be contributing to the open source community. Visit their GitHub page for more information.</p>
-      </section>
+            <p>Sabertooth is a team of four software developers enthusiastic to be contributing to the open source community. Visit their GitHub page for more information.</p>
+        </section>
     </div>
     <script src="javascripts/scale.fix.js"></script>
 
-  </body>
+</body>
 
 </html>

@@ -346,7 +346,17 @@ footer {
   margin:auto;
   margin-bottom:18px;
 }
-
 .method-name {
   color: #0082FC;
+}
+#title {
+  display: inline-block;
+  
+}
+#imgLogo {
+  display: inline-block;
+    height: 40px;
+}
+* {
+  border: 1px solid green;
 }
