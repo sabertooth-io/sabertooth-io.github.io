@@ -283,7 +283,33 @@
         <p>In the above example, .getValue() returns the current battery level as a percentage from 0% to 100%;
           0% represents a battery that is fully discharged, 100% represents a battery that is fully charged.</p>
         <hr>
-
+        <h4 class="method-name" id="method-postvalue">
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.postValue('service', 'value')
+        </h4>
+        <p>Method takes a characteristic name and value. It changes the value of the specified characteristic to the value that was passed in.</p>
+        <pre><code>fitbit
+  .postValue('gap.device_name', 'myFitbit )
+    .then(changedCharacteristicName => {
+      console.log(changedCharacteristicName);
+    }); </code></pre>
+        <p>In the above example, .postValue() changes the name of the instantiated device to myFitbit.</p>
+        <h4 class="method-name" id="method-startnotifications">
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.startNotifications('characteristic', 'value')
+        </h4>
+        <p>Method takes a characteristic name and a callback function. Provided that the characteristic has a 'notify' property, .startNotifications() will pass the event object broadcasted by the characteristic as the parameter of the callback, and run the callback any time a new event occurs.</p>
+        <pre><code>fitbit
+  .startNotifications('heart_rate_measurement', e => {
+    var newHR = parseHeartRate(e.target.value);
+    console.log(newHR.heartRate);
+}); </code></pre>
+        <p>This method allows us to access streams of data. In the above example, .startNotifications() accesses the heart_rate_measurement characteristic on a fitbit, and prints the heart rate to the console every time an event fires. This 'notifies' us of the heart rate at regular intervals. </p>
+         <h4 class="method-name" id="method-startnotifications">
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.stopNotifications('characteristic')
+        </h4>
+         <p>This method stops the notifications streaming from the specified characteristic on the device.</p>
+         <pre><code>fitbit
+  .stopNotifications('heart_rate_measurement'); </code></pre>
+        <hr>
         <h3 id="demo">
           Demo
         </h3>
