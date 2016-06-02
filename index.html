@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Sabertooth-io.GitHub.io by sabertooth-io</title>
-
+    <title>Sabertooth</title>
+    <link rel="shortcut icon" type="image/png" href="https://avatars3.githubusercontent.com/u/19232538?v=3&s=200"/>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width">
@@ -61,32 +61,43 @@
         <p>
           <a href="#demo">Battery Service</a>
         </p>
+        <hr>
+        <h4>Appendix</h4>
+        <p>
+          <a href="#serviceschars">Fully Supported GATT Services &#38; GATT Characteristics</a>
+        </p>
       </header>
       <section>
         <h3>
 <a id="intro" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bridging the gap between the web and the physical world through Bluetooth.</h3>
         <img class="intro-infographic" src="assets/BLE-WebInfographic.svg" height="80%" width="80%" horizontal-align="center">
-        <p>Previously, interacting with Bluetooth devices was limited to native applications. Access to connect, read, and write from Bluetooth devices is now made available to web applications thanks to the Web Bluetooth API and modern web browsers like
-          Chrome and Firefox, Opera who are incresingly adding support for new features in the Web Bluetooth API Spec.</p>
+        <p>Bluetooth devices are everywhere, and as developers, we want to write useful, fun, and powerful applications for them. Until recently, this meant writing native applications that had to be installed on user devices- a burdensome process for both users and developers. With the number of Bluetooth devices around us, a more direct and intuitive interface was long overdue. Now, thanks to the <a href="https://www.w3.org/community/web-bluetooth/">Web Bluetooth Community Group</a> and their work to bring us the <a href="https://webbluetoothcg.github.io/web-bluetooth/">Web Bluetooth API</a>, we have the ability to interact directly with Bluetooth 4.0 devices through the browser. Connecting, reading, and writing to and from Bluetooth devices is all made possible through the Web Bluetooth API and modern web browsers like Chrome, Firefox, and Opera who are incresingly adding support for new features in the Web Bluetooth API Spec.</p>
+        <p>We at Sabertooth are excited by the potential for the Web Bluetooth API, but also recognize that developers like ourselves just want to build things, not spend time wading through documentation and hiking up the learning curve with every new technology we use. Sabertooth is an attempt to harness the power of the Web Bluetooth API and make it easily accessible to developers through a simple and intuitive framework. In short, we want you to start building powerful, browser-based Bluetooth applications quickly and effortlessly, and have fun doing it.</p>
 
         <h3>
 <a id="overview" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
 
-        <p>Web-bluetooth is a configurable application framework for integrating bluetooth functionality with client-side Javascript.</p>
+        <p>Sabertooth is a configurable application framework for integrating bluetooth functionality with client-side Javascript.</p>
 
         <h3>
 <a id="getting-started" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
-        <p>Web-Bluetooth (currently v1.0.0) has a few easy ways to quickly get started, each one appealing to your preferences.</p>
+        <p>Sabertooth (currently v1.0.0) has a few easy ways to quickly get started, each one appealing to your preferences.</p>
+        <blockquote >Note: Sabertooth package names and file names appear as 'web-bluetooth' throughout the documentation, consistent with actual package names and file names you will encounter while working with Sabertooth.</blockquote>
+        <br>
         <h4>Download</h4>
-        <p>You can install web-bluetooth by downloading our minified library <a href="https://github.com/sabertooth-io/web-bluetooth/archive/master.zip" target="_blank">here</a></p>
+        <p>You can install Sabertooth by downloading our minified framework <a href="https://github.com/sabertooth-io/web-bluetooth/archive/master.zip" target="_blank">here</a>.</p>
         <p>Make the library available by referencing it in your index.html file.</p>
         <pre><code class="code">&#60;script&#62;/lib/web-bluetooth.js&#60;/script&#62;</code></pre>
 
         <h4>Install with npm</h4>
-        <p>You can install web-bluetooth with <a href="https://npmjs.com/package/web-bluetooth" target="_blank">npm</a></p>
-        <p>Require('web-bluetooth') will load all of the files necessary to run our library.</p>
+        <p>You can install Sabertooth as the npm package 'web-bluetooth' <a href="https://npmjs.com/package/web-bluetooth" target="_blank"> here</a>.</p>
+
+        <p>Or run the command-line script below in the project directory in which you would like to use Sabertooth.</p>
         <pre><code class="code">$ npm install web-bluetooth</code></pre>
+        <!--FIXME: We're not doing an iffy anymore, what is the right thing to show here?  -->
+        <p style="color:red;">Require('web-bluetooth') will load all of the files necessary to run Sabertooth.</p>
+        <pre><code style="color:red;" class="code">const bluetooth = require('web-bluetooth');</code></pre>
         <!-- <h4>Install with Bower</h4>
         <p>You can install web-bluetooth with <a href="http://bower.io/" target="_blank">Bower</a></p>
         <pre><code class="code">$ bower install web-bluetooth</code></pre> -->
@@ -94,12 +105,11 @@
         <h3 id="general-accessibility">
             <span aria-hidden="true" class="octicon octicon-link"></span>General Accesibility
         </h3>
-        <p>While the Web Bluetooth API is still in development, features have been made available.
-          This library has made available several important features to develop web applications
-          using Bluetooth connections.</p>
+        <p>While the Web Bluetooth API is still in development, certain features have been made available.
+          </p>
           <div>
             <blockquote>
-              Note: The Web Bluetooth API is still in development and many features have not been
+              Note: The functionality of Sabertooth is contingent upon the permissions and availabilities of the Web Bluetooth API. The Web Bluetooth API is still in development and many features have not been
               implemented across browsers. For the current status of the API, please follow this
               <a href="https://webbluetoothcg.github.io/web-bluetooth/" target="_blank">link</a>.
             </blockquote>
@@ -136,30 +146,47 @@
             <td></td>
           </tr>
         </table>
-        <h3 id="gatt-support">
-            <span aria-hidden="true" class="octicon octicon-link"></span>GATT Services Support
-        </h3>
-        <p>Services are collections of characteristics and relationships to other services that
-          encapsulate the behavior of part of a device. For example, the “Battery Service” exposes
-          the Battery Level of a device broadcasting the “Battery Service” service.</p>
-          <p>This library abstracts over core GATT Service types with special attention to service
-          types that are common and that are most applicable in this current stage of Bluetooth
-          device availability.</p>
+        <blockquote >Note: To enable the browser to use the Web Bluetooth API (and Sabertooth), experimental flags must be enabled and an https server are required. Please see <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">Interact with BLE Devices on the Web</a> for more information.
+        </blockquote>
+        <br>
+        <h3><span aria-hidden="true" class="octicon octicon-link"></span>GATT Attributes</h3>
+        <p>A basic understanding of the <a href="https://developer.bluetooth.org/TechnologyOverview/Pages/GATT.aspx">Generic Attribute Profile (GATT)</a> is helpful when writing applications to interact with Bluetooth devices, but using Sabertooth requires an understanding of two main GATT attributes, GATT services and GATT characteristics.</p>
+        <p><b>GATT Services</b> are collections of GATT characteristics, and  <b>GATT Characteristics</b> are attributes that contain a single value. For example, the GATT service 'battery_service' contains the GATT characteristic 'battery_level', which itself contains the value of the device's battery level at a given time.</p>
+          <p>Sabertooth abstracts over core GATT services and GATT characteristics with special attention to GATT services and GATT characteristics that are more common and that are most applicable in this current stage of Bluetooth
+          device availability, but also allows for the use of virtually any GATT service or GATT characteristic, as well as non-GATT services and non-GATT characteristics.</p>
           <p>For the full list of normative Services click <a href="https://webbluetoothcg.github.io/web-bluetooth/" target="_blank">here</a>. As the Web Bluetooth API continues to be
           developed and as this library matures, more service types will be made available.</p>
         <table class="tables">
           <tr>
             <th id="feature-type">Service</th>
-            <th>Supported</th>
-            <th>Spec Type</th>
             <th>Assigned Number</th>
+            <th>Characteristic</th>
+            <th>Assigned Number</th>
+            <th>Supported</th>
           </tr>
-          <tr>
-            <td id="feature-type">Alert Notification</td>
-            <td></td>
-            <td>'alert-notification'</td>
-            <td>0x1811</td>
-          </tr>
+          <tr> <td> alert_notification</td> <td>0x1811</td><td>alert_notification_control_point</td><td>0x2A44</td><td></td></tr>
+          <tr> <td> alert_notification</td> <td>0x1811</td><td>new_alert</td><td>0x2A46</td><td></td></tr>
+          <tr> <td> alert_notification</td> <td>0x1811</td><td>supported_new_alert_category</td><td>0x2A47</td><td></td></tr>
+          <tr> <td> alert_notification</td> <td>0x1811</td><td>supported_unread_alert_category</td><td>0x2A48</td><td></td></tr>
+          <tr> <td> alert_notification</td> <td>0x1811</td><td>unread_alert_status</td><td>0x2A45</td><td></td></tr>
+          <tr> <td> automation_io</td> <td>0x1815</td><td>aggregate</td><td>0x2A5A</td><td></td></tr>
+          <tr> <td> automation_io</td> <td>0x1815</td><td>analog</td><td>0x2A58</td><td></td></tr>
+          <tr> <td> automation_io</td> <td>0x1815</td><td>digital</td><td>0x2A56</td><td></td></tr>
+          <tr> <td> battery_service</td> <td>0x180F</td><td>battery_level</td><td>0x2A19</td><td></td></tr>
+          <tr> <td> blood_pressure</td> <td>0x1810</td><td>blood_pressure_feature</td><td>0x2A49</td><td></td></tr>
+          <tr> <td> blood_pressure</td> <td>0x1810</td><td>blood_pressure_measurement</td><td>0x2A35</td><td></td></tr>
+          <tr> <td> blood_pressure</td> <td>0x1810</td><td>intermediate_cuff_pressure</td><td>0x2A36</td><td></td></tr>
+          <tr> <td> body_composition</td> <td>0x181B</td><td>body_composition_feature</td><td>0x2A9B</td><td></td></tr>
+          <tr> <td> body_composition</td> <td>0x181B</td><td>body_composition_measurement</td><td>0x2A9C</td><td></td></tr>
+          <tr> <td> bond_management</td> <td>0x181E</td><td>bond_management_control_point</td><td>0x2AA4</td><td></td></tr>
+          <tr> <td> bond_management</td> <td>0x181E</td><td>bond_management_feature</td><td>0x2AA5</td><td></td></tr>
+          <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_feature</td><td>0x2AA8</td><td></td></tr>
+          <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_measurement</td><td>0x2AA7</td><td></td></tr>
+          <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_session_run_time</td><td>0x2AAB</td><td></td></tr>
+          <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_session_start_time</td><td>0x2AAA</td><td></td></tr>
+
+
+
           <tr>
             <td id="feature-type">Battery Service</td>
             <td>✓</td>
@@ -323,6 +350,20 @@
         <p>Notes: <br>
           • Requires Android 6.0 Marshmellow or ChromeOS.<br>
           • Enable the 'Web Bluetooth' flag.
+          <hr>
+          <h3 id="serviceschars">
+            Fully Supported GATT Services &#38; GATT Characteristics
+          </h3>
+          <h4>Battery Service</h4>
+          <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
+          <p>This demo uses the Web-Bluetooth library to connect to a device broadcasting a Battery Service characteristic and reads it's level.</p>
+          <p>
+            <a href="http://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
+            <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank">Visit the GitHub page.</a>
+          </p>
+          <p>Notes: <br>
+            • Requires Android 6.0 Marshmellow or ChromeOS.<br>
+            • Enable the 'Web Bluetooth' flag.
         </p>
           <h3>
             <span id="authors-contributors" aria-hidden="true" class="octicon octicon-link"></span>Authors and Contributors
