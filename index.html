@@ -152,136 +152,59 @@
         <h3><span aria-hidden="true" class="octicon octicon-link"></span>GATT Attributes</h3>
         <p>A basic understanding of the <a href="https://developer.bluetooth.org/TechnologyOverview/Pages/GATT.aspx">Generic Attribute Profile (GATT)</a> is helpful when writing applications to interact with Bluetooth devices, but using Sabertooth requires an understanding of two main GATT attributes, GATT services and GATT characteristics.</p>
         <p><b>GATT Services</b> are collections of GATT characteristics, and  <b>GATT Characteristics</b> are attributes that contain a single value. For example, the GATT service 'battery_service' contains the GATT characteristic 'battery_level', which itself contains the value of the device's battery level at a given time.</p>
-          <p>Sabertooth abstracts over core GATT services and GATT characteristics with special attention to GATT services and GATT characteristics that are more common and that are most applicable in this current stage of Bluetooth
+          <img style="height: 250px" src="https://cdn-learn.adafruit.com/assets/assets/000/013/828/original/microcontrollers_GattStructure.png?1390836057" />
+          <p>Sabertooth abstracts over core GATT services and GATT characteristics with special attention to GATT services and GATT characteristics that are more common and that are most applicable in the current stage of Bluetooth
           device availability, but also allows for the use of virtually any GATT service or GATT characteristic, as well as non-GATT services and non-GATT characteristics.</p>
-          <p>For the full list of normative Services click <a href="https://webbluetoothcg.github.io/web-bluetooth/" target="_blank">here</a>. As the Web Bluetooth API continues to be
+          <p>For the full list of normative GATT services click <a href="https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx" target="_blank">here</a>. As the Web Bluetooth API continues to be
           developed and as this library matures, more service types will be made available.</p>
-        <table class="tables">
-          <tr>
-            <th id="feature-type">Service</th>
-            <th>Assigned Number</th>
-            <th>Characteristic</th>
-            <th>Assigned Number</th>
-            <th>Supported</th>
-          </tr>
-          <tr> <td> alert_notification</td> <td>0x1811</td><td>alert_notification_control_point</td><td>0x2A44</td><td></td></tr>
-          <tr> <td> alert_notification</td> <td>0x1811</td><td>new_alert</td><td>0x2A46</td><td></td></tr>
-          <tr> <td> alert_notification</td> <td>0x1811</td><td>supported_new_alert_category</td><td>0x2A47</td><td></td></tr>
-          <tr> <td> alert_notification</td> <td>0x1811</td><td>supported_unread_alert_category</td><td>0x2A48</td><td></td></tr>
-          <tr> <td> alert_notification</td> <td>0x1811</td><td>unread_alert_status</td><td>0x2A45</td><td></td></tr>
-          <tr> <td> automation_io</td> <td>0x1815</td><td>aggregate</td><td>0x2A5A</td><td></td></tr>
-          <tr> <td> automation_io</td> <td>0x1815</td><td>analog</td><td>0x2A58</td><td></td></tr>
-          <tr> <td> automation_io</td> <td>0x1815</td><td>digital</td><td>0x2A56</td><td></td></tr>
-          <tr> <td> battery_service</td> <td>0x180F</td><td>battery_level</td><td>0x2A19</td><td></td></tr>
-          <tr> <td> blood_pressure</td> <td>0x1810</td><td>blood_pressure_feature</td><td>0x2A49</td><td></td></tr>
-          <tr> <td> blood_pressure</td> <td>0x1810</td><td>blood_pressure_measurement</td><td>0x2A35</td><td></td></tr>
-          <tr> <td> blood_pressure</td> <td>0x1810</td><td>intermediate_cuff_pressure</td><td>0x2A36</td><td></td></tr>
-          <tr> <td> body_composition</td> <td>0x181B</td><td>body_composition_feature</td><td>0x2A9B</td><td></td></tr>
-          <tr> <td> body_composition</td> <td>0x181B</td><td>body_composition_measurement</td><td>0x2A9C</td><td></td></tr>
-          <tr> <td> bond_management</td> <td>0x181E</td><td>bond_management_control_point</td><td>0x2AA4</td><td></td></tr>
-          <tr> <td> bond_management</td> <td>0x181E</td><td>bond_management_feature</td><td>0x2AA5</td><td></td></tr>
-          <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_feature</td><td>0x2AA8</td><td></td></tr>
-          <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_measurement</td><td>0x2AA7</td><td></td></tr>
-          <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_session_run_time</td><td>0x2AAB</td><td></td></tr>
-          <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_session_start_time</td><td>0x2AAA</td><td></td></tr>
 
+          <p>For the full list of GATT services and GATT characteristics currently fully supported by Sabertooth click <a href="#serviceschars" target="_blank">here</a>.</p>
 
-
-          <tr>
-            <td id="feature-type">Battery Service</td>
-            <td>✓</td>
-            <td>'battery_service'</td>
-            <td>0x180F</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Blood Pressure</td>
-            <td></td>
-            <td>'blood_pressure'</td>
-            <td>0x1810</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Cycling Power</td>
-            <td></td>
-            <td>'cycling_power'</td>
-            <td>0x1818</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Cycling Speed and Cadence</td>
-            <td></td>
-            <td>'cycling_speed_and_cadence'</td>
-            <td>0x1816</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Device Info</td>
-            <td>✓</td>
-            <td>'device_information'</td>
-            <td>0x180A</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Generic Access</td>
-            <td>✓</td>
-            <td>'generic_access'</td>
-            <td>0x1800</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Generic Attribute</td>
-            <td>✓</td>
-            <td>'generic_attribute'</td>
-            <td>0x1801</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Health Thermometer</td>
-            <td></td>
-            <td>'health-thermometer'</td>
-            <td>0x1809</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Heart Rate</td>
-            <td>✓</td>
-            <td>'health-heart_rate'</td>
-            <td>0x180D</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Running Speed and Cadence</td>
-            <td></td>
-            <td>'running_speed_and_cadence'</td>
-            <td>0x1814</td>
-          </tr>
-          <tr>
-            <td id="feature-type">Tx Power</td>
-            <td>✓</td>
-            <td>'tx_power'</td>
-            <td>0x1804</td>
-          </tr>
-        </table>
         <h3 id="general-methods">
-            <span aria-hidden="true" class="octicon octicon-link"></span>General Methods Provided by Library
+            <span aria-hidden="true" class="octicon octicon-link"></span>General Sabertooth Methods
         </h3>
         <h4 class="method-name" id="method-newdevice">
           Create a New Bluetooth Device Object
         </h4>
         <p>Before calling methods on your Bluetooth device, create a new Bluetooth device object.</p>
-        <pre><code>var fitbit = new Device({
-  namePrefix: 'Surge'
-  services: ['battery_service']
+        <pre><code>var fitbit = new BluetoothDevice({
+  name: 'Surge'
 });</code></pre>
         <p>In the example above, we have created a new Bluetooth device object titled 'blue' by requesting the
-          object with it's 'namePrefix' and a service of 'battery service'.
-          <br>
-          Device is a constructor that takes in an object corresponding to attributes on the bluetooth device.
-          Below is a schema for what can be used to connect to a device. At least one option is needed to request a device.
+          object with it's 'name'. The device 'name' is one of the many properties advertised by Bluetooth devices and serves as a possible identifier for establishing initial connections to the device. The device's <b>name</b>, <b>namePrefix</b>, <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (<b>uuid</b>), or an advertised <b>service</b> are all valid options for requesting and establishing an initial device connection with Sabertooth.
+          <p>'BluetoothDevice' is a constructor that takes in an object corresponding to attributes advertised by the bluetooth device. Below is a schema representing the optional parameters that can be passed into the BluetoothDevice constructor to create a new BluetoothDevice instance. At least one of the key-value pairs below is needed to request a device and establish an initial connection.</p>
+
           <pre><code>{
   name: 'device_name',
   namePrefix: 'devicePrefix',
   uuid: 'uuid',
-  service: 'service'
+  services: ['service', 'service', 'service']
 }</code></pre>
-          <code>'name': </code>is the name (hardware) of the device<br>
-          <code>'namePrefix': </code>looks for a name starting with namePrefix<br>
-          <code>'services': </code>represents a 128-bit UUID. A valid UUID is a string that matches
-          the regexp '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/'<br>
-          <code>'uuid': </code>collection of characteristics and the relationships to other services
-          encapsulate the behavior of part of a device
+          <code>'name': </code>the advertised the name of the device; often set by the manufacturer unless modified by the device user<br>
+          <code>'namePrefix': </code>an initial substring of any length that matches an advertised device name<br>
+          <code>'uuid': </code>represents a 128-bit uuid. A valid uuid is a string that matches
+          the regexp <code>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/</code><br>
+          <code>'services': </code>collection of characteristics and the relationships to other services
+          encapsulate the behavior of part of a device <br>
+        </p>
+        <p>
+          Below are several examples of various ways in which a new BluetoothDevice instance can be created.
+          <pre><code>/** Attempts to request a device advertising a name
+  * beginning with the substring 'Su'
+  */
+var fitbit = new BluetoothDevice({
+  namePrefix: 'Su'
+});</code></pre>
+
+<pre><code>/** Attempts to request a device advertising the name
+  * 'Polar H7 Heart Rate Sensor' and ALSO advertising the
+  * GATT service 'heart_rate'
+  */
+var fitbit = new BluetoothDevice({
+name: 'Polar H7 Heart Rate Sensor'
+service: ['heart_rate']
+});</code></pre>
+
         </p>
         <hr>
         <h4 class="method-name" id="method-connect">
@@ -344,27 +267,202 @@
         <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
         <p>This demo uses the Web-Bluetooth library to connect to a device broadcasting a Battery Service characteristic and reads it's level.</p>
         <p>
-          <a href="http://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
+          <a href="https://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
           <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank">Visit the GitHub page.</a>
         </p>
         <p>Notes: <br>
-          • Requires Android 6.0 Marshmellow or ChromeOS.<br>
+          • Requires Android 6.0 Marshmallow, ChromeOS, or Chrome for Linux.<br>
           • Enable the 'Web Bluetooth' flag.
           <hr>
           <h3 id="serviceschars">
-            Fully Supported GATT Services &#38; GATT Characteristics
+            GATT Services &#38; GATT Characteristics Fully Supported by Sabertooth
           </h3>
-          <h4>Battery Service</h4>
-          <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
-          <p>This demo uses the Web-Bluetooth library to connect to a device broadcasting a Battery Service characteristic and reads it's level.</p>
-          <p>
-            <a href="http://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
-            <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank">Visit the GitHub page.</a>
-          </p>
-          <p>Notes: <br>
-            • Requires Android 6.0 Marshmellow or ChromeOS.<br>
-            • Enable the 'Web Bluetooth' flag.
-        </p>
+          <p>GATT services and GATT characteristics for which the 'Supported' field is checked below can be interacted with out-of-the-box with Sabertooth. Support for other services and charactertistics can be added through the 'addCharacteristic' method.</p>
+          <table class="tables">
+            <tr>
+              <th id="feature-type">Service</th>
+              <th>Assigned Number</th>
+              <th>Characteristic</th>
+              <th>Assigned Number</th>
+              <th>Supported</th>
+            </tr>
+            <tr> <td> alert_notification</td> <td>0x1811</td><td>alert_notification_control_point</td><td>0x2A44</td><td></td></tr>
+            <tr> <td> alert_notification</td> <td>0x1811</td><td>new_alert</td><td>0x2A46</td><td></td></tr>
+            <tr> <td> alert_notification</td> <td>0x1811</td><td>supported_new_alert_category</td><td>0x2A47</td><td></td></tr>
+            <tr> <td> alert_notification</td> <td>0x1811</td><td>supported_unread_alert_category</td><td>0x2A48</td><td></td></tr>
+            <tr> <td> alert_notification</td> <td>0x1811</td><td>unread_alert_status</td><td>0x2A45</td><td></td></tr>
+            <tr> <td> automation_io</td> <td>0x1815</td><td>aggregate</td><td>0x2A5A</td><td></td></tr>
+            <tr> <td> automation_io</td> <td>0x1815</td><td>analog</td><td>0x2A58</td><td></td></tr>
+            <tr> <td> automation_io</td> <td>0x1815</td><td>digital</td><td>0x2A56</td><td></td></tr>
+            <tr> <td> battery_service</td> <td>0x180F</td><td>battery_level</td><td>0x2A19</td><td></td></tr>
+            <tr> <td> blood_pressure</td> <td>0x1810</td><td>blood_pressure_feature</td><td>0x2A49</td><td></td></tr>
+            <tr> <td> blood_pressure</td> <td>0x1810</td><td>blood_pressure_measurement</td><td>0x2A35</td><td></td></tr>
+            <tr> <td> blood_pressure</td> <td>0x1810</td><td>intermediate_cuff_pressure</td><td>0x2A36</td><td></td></tr>
+            <tr> <td> body_composition</td> <td>0x181B</td><td>body_composition_feature</td><td>0x2A9B</td><td></td></tr>
+            <tr> <td> body_composition</td> <td>0x181B</td><td>body_composition_measurement</td><td>0x2A9C</td><td></td></tr>
+            <tr> <td> bond_management</td> <td>0x181E</td><td>bond_management_control_point</td><td>0x2AA4</td><td></td></tr>
+            <tr> <td> bond_management</td> <td>0x181E</td><td>bond_management_feature</td><td>0x2AA5</td><td></td></tr>
+            <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_feature</td><td>0x2AA8</td><td></td></tr>
+            <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_measurement</td><td>0x2AA7</td><td></td></tr>
+            <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_session_run_time</td><td>0x2AAB</td><td></td></tr>
+            <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_session_start_time</td><td>0x2AAA</td><td></td></tr>
+            <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_specific_ops_control_point</td><td>0x2AAC</td><td></td></tr>
+            <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>cgm_status</td><td>0x2AA9</td><td></td></tr>
+            <tr> <td> continuous_glucose_monitoring</td> <td>0x181F</td><td>record_access_control_point</td><td>0x2A52</td><td></td></tr>
+            <tr> <td> current_time</td> <td>0x1805</td><td>current_time</td><td>0x2A2B</td><td></td></tr>
+            <tr> <td> current_time</td> <td>0x1805</td><td>local_time_information</td><td>0x2A0F</td><td></td></tr>
+            <tr> <td> current_time</td> <td>0x1805</td><td>reference_time_information</td><td>0x2A14</td><td></td></tr>
+            <tr> <td> cycling_power</td> <td>0x1818</td><td>cycling_power_control_point</td><td>0x2A66</td><td></td></tr>
+            <tr> <td> cycling_power</td> <td>0x1818</td><td>cycling_power_feature</td><td>0x2A65</td><td></td></tr>
+            <tr> <td> cycling_power</td> <td>0x1818</td><td>cycling_power_measurement</td><td>0x2A63</td><td></td></tr>
+            <tr> <td> cycling_power</td> <td>0x1818</td><td>cycling_power_vector</td><td>0x2A64</td><td></td></tr>
+            <tr> <td> cycling_power</td> <td>0x1818</td><td>sensor_location</td><td>0x2A5D</td><td></td></tr>
+            <tr> <td> cycling_speed_and_cadence</td> <td>0x1816</td><td>csc_feature</td><td>0x2A5C</td><td></td></tr>
+            <tr> <td> cycling_speed_and_cadence</td> <td>0x1816</td><td>csc_measurement</td><td>0x2A5B</td><td></td></tr>
+            <tr> <td> cycling_speed_and_cadence</td> <td>0x1816</td><td>sc_control_point</td><td>0x2A55</td><td></td></tr>
+            <tr> <td> cycling_speed_and_cadence</td> <td>0x1816</td><td>sensor_location</td><td>0x2A5D</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>firmware_revision_string</td><td>0x2A26</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>hardware_revision_string</td><td>0x2A27</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>ieee_11073-20601_regulatory_certification_data_list</td><td>0x2A2A</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>manufacturer_name_string</td><td>0x2A29</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>model_number_string</td><td>0x2A24</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>pnp_id</td><td>0x2A50</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>serial_number_string</td><td>0x2A25</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>software_revision_string</td><td>0x2A28</td><td></td></tr>
+            <tr> <td> device_information</td> <td>0x180A</td><td>system_id</td><td>0x2A23</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>apparent_wind_direction</td><td>0x2A73</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>apparent_wind_speed</td><td>0x2A72</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>barometric_pressure_trend</td><td>0x2AA3</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>descriptor_value_changed</td><td>0x2A7D</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>dew_point</td><td>0x2A7B</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>elevation</td><td>0x2A6C</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>gust_factor</td><td>0x2A74</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>heat_index</td><td>0x2A7A</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>humidity</td><td>0x2A6F</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>irradiance</td><td>0x2A77</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>magnetic_declination</td><td>0x2A2C</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>magnetic_flux_density_2D</td><td>0x2AA0</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>magnetic_flux_density_3D</td><td>0x2AA1</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>pollen_concentration</td><td>0x2A75</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>pressure</td><td>0x2A6D</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>rainfall</td><td>0x2A78</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>temperature</td><td>0x2A6E</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>true_wind_direction</td><td>0x2A71</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>true_wind_speed</td><td>0x2A70</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>uv_index</td><td>0x2A76</td><td></td></tr>
+            <tr> <td> environmental_sensing</td> <td>0x181A</td><td>wind_chill</td><td>0x2A79</td><td></td></tr>
+            <tr> <td> generic_access</td> <td>0x1800</td><td>gap.appearance</td><td>0x2A01</td><td></td></tr>
+            <tr> <td> generic_access</td> <td>0x1800</td><td>gap.device_name</td><td>0x2A00</td><td></td></tr>
+            <tr> <td> generic_access</td> <td>0x1800</td><td>gap.peripheral_preferred_connection_parameters</td><td>0x2A04</td><td></td></tr>
+            <tr> <td> generic_access</td> <td>0x1800</td><td>gap.peripheral_privacy_flag</td><td>0x2A02</td><td></td></tr>
+            <tr> <td> generic_access</td> <td>0x1800</td><td>gap.reconnection_address</td><td>0x2A03</td><td></td></tr>
+            <tr> <td> generic_attribute</td> <td>0x1801</td><td>gatt.service_changed</td><td>0x2A05</td><td></td></tr>
+            <tr> <td> glucose</td> <td>0x1808</td><td>glucose_feature</td><td>0x2A51</td><td></td></tr>
+            <tr> <td> glucose</td> <td>0x1808</td><td>glucose_measurement</td><td>0x2A18</td><td></td></tr>
+            <tr> <td> glucose</td> <td>0x1808</td><td>glucose_measurement_context</td><td>0x2A34</td><td></td></tr>
+            <tr> <td> glucose</td> <td>0x1808</td><td>record_access_control_point</td><td>0x2A52</td><td></td></tr>
+            <tr> <td> health_thermometer</td> <td>0x1809</td><td>intermediate_temperature</td><td>0x2A1E</td><td></td></tr>
+            <tr> <td> health_thermometer</td> <td>0x1809</td><td>measurement_interval</td><td>0x2A21</td><td></td></tr>
+            <tr> <td> health_thermometer</td> <td>0x1809</td><td>temperature_measurement</td><td>0x2A1C</td><td></td></tr>
+            <tr> <td> health_thermometer</td> <td>0x1809</td><td>temperature_type</td><td>0x2A1D</td><td></td></tr>
+            <tr> <td> heart_rate</td> <td>0x180D</td><td>body_sensor_location</td><td>0x2A38</td><td></td></tr>
+            <tr> <td> heart_rate</td> <td>0x180D</td><td>heart_rate_control_point</td><td>0x2A39</td><td></td></tr>
+            <tr> <td> heart_rate</td> <td>0x180D</td><td>heart_rate_measurement</td><td>0x2A37</td><td></td></tr>
+            <tr> <td> http_proxy</td> <td>0x1823</td><td>http_control_point</td><td>0x2ABA</td><td></td></tr>
+            <tr> <td> http_proxy</td> <td>0x1823</td><td>http_entity_body</td><td>0x2AB9</td><td></td></tr>
+            <tr> <td> http_proxy</td> <td>0x1823</td><td>http_headers</td><td>0x2AB7</td><td></td></tr>
+            <tr> <td> http_proxy</td> <td>0x1823</td><td>http_status_code</td><td>0x2AB8</td><td></td></tr>
+            <tr> <td> http_proxy</td> <td>0x1823</td><td>https_security</td><td>0x2ABB</td><td></td></tr>
+            <tr> <td> http_proxy</td> <td>0x1823</td><td>uri</td><td>0x2AB6</td><td></td></tr>
+            <tr> <td> human_interface_device</td> <td>0x1812</td><td>boot_keyboard_input_report</td><td>0x2A22</td><td></td></tr>
+            <tr> <td> human_interface_device</td> <td>0x1812</td><td>boot_keyboard_output_report</td><td>0x2A32</td><td></td></tr>
+            <tr> <td> human_interface_device</td> <td>0x1812</td><td>boot_mouse_input_report</td><td>0x2A33</td><td></td></tr>
+            <tr> <td> human_interface_device</td> <td>0x1812</td><td>hid_control_point</td><td>0x2A4C</td><td></td></tr>
+            <tr> <td> human_interface_device</td> <td>0x1812</td><td>hid_information</td><td>0x2A4A</td><td></td></tr>
+            <tr> <td> human_interface_device</td> <td>0x1812</td><td>protocol_mode</td><td>0x2A4E</td><td></td></tr>
+            <tr> <td> human_interface_device</td> <td>0x1812</td><td>report</td><td>0x2A4D</td><td></td></tr>
+            <tr> <td> human_interface_device</td> <td>0x1812</td><td>report_map</td><td>0x2A4B</td><td></td></tr>
+            <tr> <td> immediate_alert</td> <td>0x1802</td><td>alert_level</td><td>0x2A06</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>altitude</td><td>0x2AB3</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>floor_number</td><td>0x2AB2</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>indoor_positioning_configuration</td><td>0x2AAD</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>latitude</td><td>0x2AAE</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>local_east_coordinate</td><td>0x2AB1</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>local_north_coordinate</td><td>0x2AB0</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>location_name</td><td>0x2AB5</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>longitude</td><td>0x2AAF</td><td></td></tr>
+            <tr> <td> indoor_positioning</td> <td>0x1821</td><td>uncertainty</td><td>0x2AB4</td><td></td></tr>
+            <tr> <td> internet_protocol_support</td> <td>0x1820</td><td>-</td><td>-</td><td></td></tr>
+            <tr> <td> link_loss</td> <td>0x1803</td><td>alert_level</td><td>0x2A06</td><td></td></tr>
+            <tr> <td> location_and_navigation</td> <td>0x1819</td><td>ln_control_point</td><td>0x2A6B</td><td></td></tr>
+            <tr> <td> location_and_navigation</td> <td>0x1819</td><td>ln_feature</td><td>0x2A6A</td><td></td></tr>
+            <tr> <td> location_and_navigation</td> <td>0x1819</td><td>location_and_speed</td><td>0x2A67</td><td></td></tr>
+            <tr> <td> location_and_navigation</td> <td>0x1819</td><td>navigation</td><td>0x2A68</td><td></td></tr>
+            <tr> <td> location_and_navigation</td> <td>0x1819</td><td>position_quality</td><td>0x2A69</td><td></td></tr>
+            <tr> <td> next_dst_change</td> <td>0x1807</td><td>time_with_dst</td><td>0x2A11</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_action_control_point</td><td>0x2AC5</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_changed</td><td>0x2AC8</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_first_created</td><td>0x2AC1</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_id</td><td>0x2AC3</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_last_modified</td><td>0x2AC2</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_list_control_point</td><td>0x2AC6</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_list_filter</td><td>0x2AC7</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_name</td><td>0x2ABE</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_properties</td><td>0x2AC4</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_size</td><td>0x2AC0</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>object_type</td><td>0x2ABF</td><td></td></tr>
+            <tr> <td> object_transfer</td> <td>0x1825</td><td>ots_feature</td><td>0x2ABD</td><td></td></tr>
+            <tr> <td> phone_alert_status</td> <td>0x180E</td><td>alert_status</td><td>0x2A3F</td><td></td></tr>
+            <tr> <td> phone_alert_status</td> <td>0x180E</td><td>ringer_control_point</td><td>0x2A40</td><td></td></tr>
+            <tr> <td> phone_alert_status</td> <td>0x180E</td><td>ringer_setting</td><td>0x2A41</td><td></td></tr>
+            <tr> <td> pulse_oximeter</td> <td>0x1822</td><td>plx_continuous_measurement</td><td>0x2A5F</td><td></td></tr>
+            <tr> <td> pulse_oximeter</td> <td>0x1822</td><td>plx_features</td><td>0x2A60</td><td></td></tr>
+            <tr> <td> pulse_oximeter</td> <td>0x1822</td><td>plx_spot_check_measurement</td><td>0x2A5E</td><td></td></tr>
+            <tr> <td> pulse_oximeter</td> <td>0x1822</td><td>record_access_control_point</td><td>0x2A52</td><td></td></tr>
+            <tr> <td> reference_time_update</td> <td>0x1806</td><td>time_update_control_point</td><td>0x2A16</td><td></td></tr>
+            <tr> <td> reference_time_update</td> <td>0x1806</td><td>time_update_state</td><td>0x2A17</td><td></td></tr>
+            <tr> <td> running_speed_and_cadence</td> <td>0x1814</td><td>rsc_feature</td><td>0x2A54</td><td></td></tr>
+            <tr> <td> running_speed_and_cadence</td> <td>0x1814</td><td>rsc_measurement</td><td>0x2A53</td><td></td></tr>
+            <tr> <td> scan_parameters</td> <td>0x1813</td><td>scan_interval_window</td><td>0x2A4F</td><td></td></tr>
+            <tr> <td> scan_parameters</td> <td>0x1813</td><td>scan_refresh</td><td>0x2A31</td><td></td></tr>
+            <tr> <td> transport_discovery</td> <td>0x1824</td><td>tds_control_point</td><td>0x2ABC</td><td></td></tr>
+            <tr> <td> tx_power</td> <td>0x1804</td><td>tx_power_level</td><td>0x2A07</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>aerobic_heart_rate_lower_limit</td><td>0x2A7E</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>aerobic_heart_rate_upper_limit</td><td>0x2A84</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>aerobic_threshold</td><td>0x2A7F</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>age</td><td>0x2A80</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>anaerobic_heart_rate_lower_limit</td><td>0x2A81</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>anaerobic_heart_rate_upper_limit</td><td>0x2A82</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>anaerobic_threshold</td><td>0x2A83</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>database_change_increment</td><td>0x2A99</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>date_of_birth</td><td>0x2A85</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>date_of_threshold_assessment</td><td>0x2A86</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>email_address</td><td>0x2A87</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>fat_burn_heart_rate_lower_limit</td><td>0x2A88</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>fat_burn_heart_rate_upper_limit</td><td>0x2A89</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>first_name</td><td>0x2A8A</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>five_zone_heart_rate_limits</td><td>0x2A8B</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>gender</td><td>0x2A8C</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>heart_rate_max</td><td>0x2A8D</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>height</td><td>0x2A8E</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>hip_circumference</td><td>0x2A8F</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>language</td><td>0x2AA2</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>last_name</td><td>0x2A90</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>maximum_recommended_heart_rate</td><td>0x2A91</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>resting_heart_rate</td><td>0x2A92</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>sport_type_for_aerobic_and_anaerobic_thresholds</td><td>0x2A93</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>three_zone_heart_rate_limits</td><td>0x2A94</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>two_zone_heart_rate_limit</td><td>0x2A95</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>user_control_point</td><td>0x2A9F</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>user_index</td><td>0x2A9A</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>vo2_max</td><td>0x2A96</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>waist_circumference</td><td>0x2A97</td><td></td></tr>
+            <tr> <td> user_data</td> <td>0x181C</td><td>weight</td><td>0x2A98</td><td></td></tr>
+            <tr> <td> weight_scale</td> <td>0x181D</td><td>weight_measurement</td><td>0x2A9D</td><td></td></tr>
+            <tr> <td> weight_scale</td> <td>0x181D</td><td>weight_scale_feature</td><td>0x2A9E</td><td></td></tr>
+
+          </table>
+
           <h3>
             <span id="authors-contributors" aria-hidden="true" class="octicon octicon-link"></span>Authors and Contributors
           </h3>
