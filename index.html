@@ -50,12 +50,15 @@
         <hr class="hr-methods">
         <p>
           <a href="#method-newdevice">Creating a new Bluetooth Device Object</a>
-          <br>
-          <a href="#method-connect">.connect()</a>
-          <br>
-          <a href="#method-disconnect">.disconnect()</a>
-          <br>
-          <a href="#method-getvalue">.getValue()</a>
+          <br><a href="#method-connect">.connect()</a>
+          <br><a href="#method-disconnect">.disconnect()</a>
+          <br><a href="#method-connected">.connected()</a>
+          <br><a href="#method-getvalue">.getValue()</a>
+          <br><a href="#method-writevalue">.writeValue()</a>
+          <br><a href="#method-startnotifications">.startNotifications()</a>
+          <br><a href="#method-stopnotifications">.stopNotifications()</a>
+          <br><a href="#method-addcharacteristic">.addCharacteristic()</a>
+
         </p>
         <hr>
         <h4>Demo</h4>
@@ -227,9 +230,9 @@ service: ['heart_rate']
         <pre><code>fitbit.connected();</code></pre>
         <hr>
         <h4 class="method-name" id="method-getvalue">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue(characteristic)
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue(<i>characteristic</i>)
         </h4>
-        <p>Method attempts to read the value of provided <code>characteristic</code> from a connected <code>BluetoothDevice</code> instance.
+        <p>Method attempts to read the value of provided characteristic from a connected <code>BluetoothDevice</code> instance.
         <br>
         <u>Parameters:</u>
         <br>
@@ -237,7 +240,7 @@ service: ['heart_rate']
         <br>
         <u>Returns:</u>
         <br>
-        An <code>object</code> containing the <a href="https://tc39.github.io/ecma262/#sec-arraybuffer-constructor">ArrayBuffer</a> value read from the connected <code>BluetoothDevice</code> instance saved to the key <code>.rawValue</code>. For characteristics fully supported by Sabertooth, the return <code>object</code> will also include any parsed values for available descriptors of the requested characteristic as key-vlaue pairs with the descriptor as the key and the parsed value as the value.
+        An <code>object</code> containing the <a href="https://tc39.github.io/ecma262/#sec-arraybuffer-constructor">ArrayBuffer</a> value read from the connected <code>BluetoothDevice</code> instance, saved to the key <code>.rawValue</code>. For characteristics fully supported by Sabertooth, the return <code>object</code> will also include any parsed values for available descriptors of the requested characteristic as key-vlaue pairs with the descriptor as the key and the parsed value as the value.
         </p>
         <pre><code>fitbit.getValue('battery_level')
       .then(value => {
@@ -246,47 +249,51 @@ service: ['heart_rate']
         <p>In the above example, the <code>.getValue()</code> method is called on the <code>BluetoothDevice</code> instance <code>fitbit</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
         <hr>
         <h4 class="method-name" id="method-postvalue">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.writeValue('characteristic', 'value')
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.writeValue(<i>characteristic</i>, <i>value</i>)
         </h4>
         <p>Method takes a characteristic name and value. It changes the value of the specified characteristic to the value that was passed in.</p>
-        <pre><code>fitbit
-  .writeValue('gap.device_name', 'myFitbit' )
-    .then(changedCharacteristicName => {
-      console.log(changedCharacteristicName);
-    }); </code></pre>
+        <pre><code>fitbit.writeValue('gap.device_name', 'myFitbit' )
+      .then(writeSuccess => {
+        console.log(writeSuccess);
+      }); </code></pre>
         <p>In the above example, .writeValue() changes the name of the instantiated device to myFitbit.</p>
         <hr>
         <h4 class="method-name" id="method-startnotifications">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.startNotifications('characteristic', 'value')
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.startNotifications(<i>characteristic</i>, <i>callback</i>)
         </h4>
         <p>Method takes a characteristic name and a callback function. Provided that the characteristic has a 'notify' property, .startNotifications() will pass the event object broadcasted by the characteristic as the parameter of the callback, and run the callback any time a new event occurs.</p>
-        <pre><code>fitbit
-  .startNotifications('heart_rate_measurement', e => {
-    var newHR = parseHeartRate(e.target.value);
-    console.log(newHR.heartRate);
-}); </code></pre>
+        <pre><code>fitbit.startNotifications('heart_rate_measurement', e => {
+          var newHR = e.heart_rate_measurement;
+          console.log(newHR);
+      }); </code></pre>
         <p>This method allows us to access streams of data. In the above example, .startNotifications() accesses the heart_rate_measurement characteristic on a fitbit, and prints the heart rate to the console every time an event fires. This 'notifies' us of the heart rate at regular intervals. </p>
         <hr>
          <h4 class="method-name" id="method-startnotifications">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.stopNotifications('characteristic')
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.stopNotifications(<i>characteristic</i>)
         </h4>
          <p>This method stops the notifications streaming from the specified characteristic on the device.</p>
          <pre><code>fitbit
   .stopNotifications('heart_rate_measurement'); </code></pre>
   <h4 class="method-name" id="method-startnotifications">
-   <span  aria-hidden="true" class="octicon octicon-link"></span>.addCharacteristic('characteristic', 'service', properties)
+   <span  aria-hidden="true" class="octicon octicon-link"></span>.addCharacteristic(<i>characteristic</i>, <i>service</i>, <i>properties</i>)
  </h4>
-  <p>This method adds Sabertooth support for the provided characteristic to device instance on which the method was called.</p>
-  <p>
-    <code>'characteristic': </code>a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance<br>
-    <code>'service': </code>a GATT service or 128-bit uuid string that resolves to a service accessible on the device instance<br>
-    <code>properties: </code>an array containing at least one property existing on the characteristic to be added. Currently, Sabertooth supports the properties <b>'read'</b>, <b>'write'</b>, and <b>'notify'</b>.
+  <p>This method adds Sabertooth support for the provided characteristic to device instance on which the method was called.
+    <br>
+    <u>Parameters:</u>
+    <br>
+    <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance<br>
+    <code>service</code> - a GATT service or 128-bit uuid string that resolves to a service accessible on the device instance<br>
+    <code>properties</code> - an array containing at least one property existing on the characteristic to be added. Currently, Sabertooth supports the properties <b>'read'</b>, <b>'write'</b>, and <b>'notify'</b>.
+    <br>
+    <u>Returns:</u>
+    <br>
+    Returns a boolean representing the success of the attempt to add the characteristic to the device instance where <code>true</code> represents success.
   </p>
   <blockquote >Note: For characteristics added to the device instance, Sabertooth cannot parse values read from the device or prepare values to be written to the device. Returned values from device calls to the .readValue() method will return an object containing the raw data returned from the device; device calls to the .writeValue() method will attempt to write the provided value directly to the device in its provided form.
   </blockquote>
   <br>
-  <pre><code>drone
-.addCharacteristic('9a66fd22-0800-9191-11e4-012d1540cb8e','9a66fd21-0800-9191-11e4-012d1540cb8e',['read','write','notify']); </code></pre>
+  <pre><code>fitbit.addCharacteristic('9a66fd22-0800-9191-11e4-012d1540cb8e','9a66fd21-0800-9191-11e4-012d1540cb8e',['read','write','notify']); </code></pre>
+  <p>In the above example, the <code>.addCharacteristic()</code> method is called on the <code>BluetoothDevice</code> instance <code>fitbit</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
         <hr>
         <h3 id="demo">
           Demo
