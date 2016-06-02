@@ -152,39 +152,59 @@
         <h3><span aria-hidden="true" class="octicon octicon-link"></span>GATT Attributes</h3>
         <p>A basic understanding of the <a href="https://developer.bluetooth.org/TechnologyOverview/Pages/GATT.aspx">Generic Attribute Profile (GATT)</a> is helpful when writing applications to interact with Bluetooth devices, but using Sabertooth requires an understanding of two main GATT attributes, GATT services and GATT characteristics.</p>
         <p><b>GATT Services</b> are collections of GATT characteristics, and  <b>GATT Characteristics</b> are attributes that contain a single value. For example, the GATT service 'battery_service' contains the GATT characteristic 'battery_level', which itself contains the value of the device's battery level at a given time.</p>
-          <p>Sabertooth abstracts over core GATT services and GATT characteristics with special attention to GATT services and GATT characteristics that are more common and that are most applicable in this current stage of Bluetooth
+          <img style="height: 250px" src="https://cdn-learn.adafruit.com/assets/assets/000/013/828/original/microcontrollers_GattStructure.png?1390836057" />
+          <p>Sabertooth abstracts over core GATT services and GATT characteristics with special attention to GATT services and GATT characteristics that are more common and that are most applicable in the current stage of Bluetooth
           device availability, but also allows for the use of virtually any GATT service or GATT characteristic, as well as non-GATT services and non-GATT characteristics.</p>
-          <p>For the full list of normative Services click <a href="https://webbluetoothcg.github.io/web-bluetooth/" target="_blank">here</a>. For the full list of GATT services and GATT characteristics currently supported by Sabertooth click <a href="#serviceschars" target="_blank">here</a>. As the Web Bluetooth API continues to be
+          <p>For the full list of normative GATT services click <a href="https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx" target="_blank">here</a>. As the Web Bluetooth API continues to be
           developed and as this library matures, more service types will be made available.</p>
 
+          <p>For the full list of GATT services and GATT characteristics currently fully supported by Sabertooth click <a href="#serviceschars" target="_blank">here</a>.</p>
+
         <h3 id="general-methods">
-            <span aria-hidden="true" class="octicon octicon-link"></span>General Methods Provided by Library
+            <span aria-hidden="true" class="octicon octicon-link"></span>General Sabertooth Methods
         </h3>
         <h4 class="method-name" id="method-newdevice">
           Create a New Bluetooth Device Object
         </h4>
         <p>Before calling methods on your Bluetooth device, create a new Bluetooth device object.</p>
-        <pre><code>var fitbit = new Device({
-  namePrefix: 'Surge'
-  services: ['battery_service']
+        <pre><code>var fitbit = new BluetoothDevice({
+  name: 'Surge'
 });</code></pre>
         <p>In the example above, we have created a new Bluetooth device object titled 'blue' by requesting the
-          object with it's 'namePrefix' and a service of 'battery service'.
-          <br>
-          Device is a constructor that takes in an object corresponding to attributes on the bluetooth device.
-          Below is a schema for what can be used to connect to a device. At least one option is needed to request a device.
+          object with it's 'name'. The device 'name' is one of the many properties advertised by Bluetooth devices and serves as a possible identifier for establishing initial connections to the device. The device's <b>name</b>, <b>namePrefix</b>, <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (<b>uuid</b>), or an advertised <b>service</b> are all valid options for requesting and establishing an initial device connection with Sabertooth.
+          <p>'BluetoothDevice' is a constructor that takes in an object corresponding to attributes advertised by the bluetooth device. Below is a schema representing the optional parameters that can be passed into the BluetoothDevice constructor to create a new BluetoothDevice instance. At least one of the key-value pairs below is needed to request a device and establish an initial connection.</p>
+
           <pre><code>{
   name: 'device_name',
   namePrefix: 'devicePrefix',
   uuid: 'uuid',
-  service: 'service'
+  services: ['service', 'service', 'service']
 }</code></pre>
-          <code>'name': </code>is the name (hardware) of the device<br>
-          <code>'namePrefix': </code>looks for a name starting with namePrefix<br>
-          <code>'services': </code>represents a 128-bit UUID. A valid UUID is a string that matches
-          the regexp '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/'<br>
-          <code>'uuid': </code>collection of characteristics and the relationships to other services
-          encapsulate the behavior of part of a device
+          <code>'name': </code>the advertised the name of the device; often set by the manufacturer unless modified by the device user<br>
+          <code>'namePrefix': </code>an initial substring of any length that matches an advertised device name<br>
+          <code>'uuid': </code>represents a 128-bit uuid. A valid uuid is a string that matches
+          the regexp <code>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/</code><br>
+          <code>'services': </code>collection of characteristics and the relationships to other services
+          encapsulate the behavior of part of a device <br>
+        </p>
+        <p>
+          Below are several examples of various ways in which a new BluetoothDevice instance can be created.
+          <pre><code>/** Attempts to request a device advertising a name
+  * beginning with the substring 'Su'
+  */
+var fitbit = new BluetoothDevice({
+  namePrefix: 'Su'
+});</code></pre>
+
+<pre><code>/** Attempts to request a device advertising the name
+  * 'Polar H7 Heart Rate Sensor' and ALSO advertising the
+  * GATT service 'heart_rate'
+  */
+var fitbit = new BluetoothDevice({
+name: 'Polar H7 Heart Rate Sensor'
+service: ['heart_rate']
+});</code></pre>
+
         </p>
         <hr>
         <h4 class="method-name" id="method-connect">
@@ -247,11 +267,11 @@
         <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
         <p>This demo uses the Web-Bluetooth library to connect to a device broadcasting a Battery Service characteristic and reads it's level.</p>
         <p>
-          <a href="http://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
+          <a href="https://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
           <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank">Visit the GitHub page.</a>
         </p>
         <p>Notes: <br>
-          • Requires Android 6.0 Marshmellow or ChromeOS.<br>
+          • Requires Android 6.0 Marshmallow, ChromeOS, or Chrome for Linux.<br>
           • Enable the 'Web Bluetooth' flag.
           <hr>
           <h3 id="serviceschars">
