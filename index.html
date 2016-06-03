@@ -49,13 +49,17 @@
         </p>
         <hr class="hr-methods">
         <p>
-          <a href="#method-newdevice">Creating a new Bluetooth Device Object</a>
-          <br>
-          <a href="#method-connect">.connect()</a>
-          <br>
-          <a href="#method-disconnect">.disconnect()</a>
-          <br>
-          <a href="#method-getvalue">.getValue()</a>
+          <a href="#general-newdevice">Creating a new Bluetooth Device</a>
+          <a href="#general-methods">Device Methods</a>
+          <br><a href="#method-connect">.connect()</a>
+          <br><a href="#method-disconnect">.disconnect()</a>
+          <br><a href="#method-connected">.connected()</a>
+          <br><a href="#method-getvalue">.getValue()</a>
+          <br><a href="#method-writevalue">.writeValue()</a>
+          <br><a href="#method-startnotifications">.startNotifications()</a>
+          <br><a href="#method-stopnotifications">.stopNotifications()</a>
+          <br><a href="#method-addcharacteristic">.addCharacteristic()</a>
+
         </p>
         <hr>
         <h4>Demo</h4>
@@ -147,7 +151,9 @@
             <td></td>
           </tr>
         </table>
-        <blockquote >Note: To enable the browser to use the Web Bluetooth API (and Sabertooth), experimental flags must be enabled and an https server are required. Please see <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">Interact with BLE Devices on the Web</a> for more information.
+        <blockquote >Note: To enable the browser to use the Web Bluetooth API (and Sabertooth), experimental flags must be enabled and an https server are required.<br>
+          <img style="width: 480px; margin-top: 10px;" src="https://developers.google.com/web/updates/images/2015-07-22-interact-with-ble-devices-on-the-web/web-bluetooth-flag.png" />
+          Please see <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web">Interact with BLE Devices on the Web</a> for more information.
         </blockquote>
         <br>
         <h3><span aria-hidden="true" class="octicon octicon-link"></span>GATT Attributes</h3>
@@ -161,121 +167,154 @@
 
           <p>For the full list of GATT services and GATT characteristics currently fully supported by Sabertooth click <a href="#serviceschars" target="_blank">here</a>.</p>
 
-        <h3 id="general-methods">
-            <span aria-hidden="true" class="octicon octicon-link"></span>General Sabertooth Methods
+        <h3 id="general-newdevice">
+            <span aria-hidden="true" class="octicon octicon-link"></span>Creating a New Bluetooth Device
         </h3>
         <h4 class="method-name" id="method-newdevice">
-          Create a New Bluetooth Device Object
+          new BluetoothDevice(<i>filters</i>)
         </h4>
-        <p>Before calling methods on your Bluetooth device, create a new Bluetooth device object.</p>
-        <pre><code>var fitbit = new BluetoothDevice({
-  name: 'Surge'
-});</code></pre>
-        <p>In the example above, we have created a new Bluetooth device object titled 'blue' by requesting the
-          object with it's 'name'. The device 'name' is one of the many properties advertised by Bluetooth devices and serves as a possible identifier for establishing initial connections to the device. The device's <b>name</b>, <b>namePrefix</b>, <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (<b>uuid</b>), or an advertised <b>service</b> are all valid options for requesting and establishing an initial device connection with Sabertooth.
-          <p>'BluetoothDevice' is a constructor that takes in an object corresponding to attributes advertised by the bluetooth device. Below is a schema representing the optional parameters that can be passed into the BluetoothDevice constructor to create a new BluetoothDevice instance. At least one of the key-value pairs below is needed to request a device and establish an initial connection.</p>
-
+        <p>To begin interacting with a Bluetooth device, create a new instance of <code>BluetoothDevice</code> and save the result to a variable. <code>BluetoothDevice</code> is a constructor that takes in an object <code>filters</code> containing attributes advertised by the bluetooth device.</p>
+        <p>
+          <u>Parameters:</u>
+          <br>
+          <code>filters</code> - an object containing at least one valid filter corresponding to attributes advertised by the bluetooth device through which Sabertooth will attempt to request and connect to the device. Below is a schema representing the optional parameters that can be passed into the <code>BluetoothDevice</code> constructor to create a new <code>BluetoothDevice</code> instance. At least one of the key-value pairs below is needed to request a device and establish an initial connection.
+          <blockquote >
+          Note: Parameters passed into the <code>filters</code> object of the <code>BluetoothDevice</code> constructor are inclusive; a request and connection to a device can only succeed if the device satisfies all of the provided filters.
+          </blockquote><br>
           <pre><code>{
   name: 'device_name',
   namePrefix: 'devicePrefix',
   uuid: 'uuid',
   services: ['service', 'service', 'service']
 }</code></pre>
-          <code>'name': </code>the advertised the name of the device; often set by the manufacturer unless modified by the device user<br>
-          <code>'namePrefix': </code>an initial substring of any length that matches an advertised device name<br>
-          <code>'uuid': </code>represents a 128-bit uuid. A valid uuid is a string that matches
+          <code>name </code> - the advertised the name of the device; often set by the manufacturer unless modified by the device user<br>
+          <code>namePrefix</code> - an initial substring of any length that matches an advertised device name<br>
+          <code>uuid</code> - represents a 128-bit uuid. A valid uuid is a string that matches
           the regexp <code>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/</code><br>
-          <code>'services': </code>collection of characteristics and the relationships to other services
-          encapsulate the behavior of part of a device <br>
+          <code>services</code> - an array including at least one service being advertised by the device.
+          <blockquote> Note: Not all services present on a device are advertised. Attempting to access a device by including a filter for a service present on a device but not being advertised by the device will cause the request to the device to fail.
+          </blockquote>
+          <br>
+          <u>Returns:</u>
+          <br>
+          A new <code>BluetoothDevice</code> instance on which Sabertooth methods can be called.
         </p>
         <p>
-          Below are several examples of various ways in which a new BluetoothDevice instance can be created.
-          <pre><code>/* Attempts to request a device advertising a name
- * beginning with the substring 'Su'
- */
-var fitbit = new BluetoothDevice({
-  namePrefix: 'Su'
+                  <u>Example:</u>
+        </p>
+
+        <pre><code>var exampleDevice = new BluetoothDevice({
+  name: 'Surge'
+});</code></pre>
+        <p>In the example above, a new <code>BluetoothDevice</code> instance <code>blue</code> has been created with a valid request filter. The device <code>name</code> is one of the many properties advertised by Bluetooth devices and serves as a possible identifier for establishing initial connections to the device. The device's <b>name</b>, <b>namePrefix</b>, <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (<b>uuid</b>), or an advertised <b>service</b> are all valid options for requesting and establishing an initial device connection with Sabertooth.
+
+        </p>
+        <p>
+          Below are several other examples of ways in which a new <code>BluetoothDevice</code> instance can be created.
+          <pre><code><i>/* Attempts to request a device advertising a name
+ * beginning with the substring 'Po'
+ */</i>
+var exampleDevice = new BluetoothDevice({
+  namePrefix: 'Po'
 });</code></pre>
 
-<pre><code>/* Attempts to request a device advertising the name
+<pre><code><i>/* Attempts to request a device advertising the name
  * 'Polar H7 Heart Rate Sensor' and ALSO advertising the
  * GATT service 'heart_rate'
- */
-var fitbit = new BluetoothDevice({
-name: 'Polar H7 Heart Rate Sensor'
-service: ['heart_rate']
+ */</i>
+var exampleDevice = new BluetoothDevice({
+  name: 'Polar H7 Heart Rate Sensor'
+  service: ['heart_rate']
 });</code></pre>
 
         </p>
         <hr>
+        <h3 id="general-methods">
+            <span aria-hidden="true" class="octicon octicon-link"></span>General Methods
+        </h3>
         <h4 class="method-name" id="method-connect">
           .connect()
         </h4>
         <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
-        <pre><code>fitbit.connect(connectedDevice,(server) => {
-  connectedDevice = device;
-};</code></pre>
+        <pre><code>exampleDevice.connect();</code></pre>
         <hr>
         <h4 class="method-name" id="method-disconnect">
           .disconnect()
         </h4>
         <p>Method disconnects you from the device.</p>
-        <pre><code>fitbit.disconnect();</code></pre>
+        <pre><code>exampleDevice.disconnect();</code></pre>
+        <hr>
+        <h4 class="method-name" id="method-connected">
+          .connected()
+        </h4>
+        <p>Method returns the current connection status of the device where <code>true</code> is connected and <code>false</code> is disconnected.</p>
+        <pre><code>exampleDevice.connected();</code></pre>
         <hr>
         <h4 class="method-name" id="method-getvalue">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue('service')
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue(<i>characteristic</i>)
         </h4>
-        <p>Method reads the value from the device you are connected to by passing in the characteristic as a string.</p>
-        <pre><code>fitbit
-  .getValue('battery_service')
-    .then(value => {
-      console.log(value);
-    });</code></pre>
-        <p>In the above example, .getValue() returns the current battery level as a percentage from 0% to 100%;
-          0% represents a battery that is fully discharged, 100% represents a battery that is fully charged.</p>
+        <p>Method attempts to read the value of provided characteristic from a connected <code>BluetoothDevice</code> instance.
+        <br>
+        <u>Parameters:</u>
+        <br>
+        <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance.
+        <br>
+        <u>Returns:</u>
+        <br>
+        An <code>object</code> containing the <a href="https://tc39.github.io/ecma262/#sec-arraybuffer-constructor">ArrayBuffer</a> value read from the connected <code>BluetoothDevice</code> instance, saved to the key <code>.rawValue</code>. For characteristics fully supported by Sabertooth, the return <code>object</code> will also include any parsed values for available descriptors of the requested characteristic as key-vlaue pairs with the descriptor as the key and the parsed value as the value.
+        </p>
+        <pre><code>exampleDevice.getValue('battery_level')
+      .then(value => {
+        console.log(value.battery_level);
+      });</code></pre>
+        <p>In the above example, the <code>.getValue()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
         <hr>
-        <h4 class="method-name" id="method-postvalue">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.writeValue('characteristic', 'value')
+        <h4 class="method-name" id="method-writevalue">
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.writeValue(<i>characteristic</i>, <i>value</i>)
         </h4>
         <p>Method takes a characteristic name and value. It changes the value of the specified characteristic to the value that was passed in.</p>
-        <pre><code>fitbit
-  .writeValue('gap.device_name', 'myFitbit' )
-    .then(changedCharacteristicName => {
-      console.log(changedCharacteristicName);
-    }); </code></pre>
+        <pre><code>exampleDevice.writeValue('gap.device_name', 'myFitbit' )
+      .then(writeSuccess => {
+        console.log(writeSuccess);
+      }); </code></pre>
         <p>In the above example, .writeValue() changes the name of the instantiated device to myFitbit.</p>
         <hr>
         <h4 class="method-name" id="method-startnotifications">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.startNotifications('characteristic', 'value')
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.startNotifications(<i>characteristic</i>, <i>callback</i>)
         </h4>
         <p>Method takes a characteristic name and a callback function. Provided that the characteristic has a 'notify' property, .startNotifications() will pass the event object broadcasted by the characteristic as the parameter of the callback, and run the callback any time a new event occurs.</p>
-        <pre><code>fitbit
-  .startNotifications('heart_rate_measurement', e => {
-    var newHR = parseHeartRate(e.target.value);
-    console.log(newHR.heartRate);
-}); </code></pre>
-        <p>This method allows us to access streams of data. In the above example, .startNotifications() accesses the heart_rate_measurement characteristic on a fitbit, and prints the heart rate to the console every time an event fires. This 'notifies' us of the heart rate at regular intervals. </p>
+        <pre><code>exampleDevice.startNotifications('heart_rate_measurement', e => {
+          var newHR = e.heart_rate_measurement;
+          console.log(newHR);
+      }); </code></pre>
+        <p>This method allows us to access streams of data. In the above example, .startNotifications() accesses the heart_rate_measurement characteristic on a exampleDevice, and prints the heart rate to the console every time an event fires. This 'notifies' us of the heart rate at regular intervals. </p>
         <hr>
-         <h4 class="method-name" id="method-startnotifications">
-          <span  aria-hidden="true" class="octicon octicon-link"></span>.stopNotifications('characteristic')
+         <h4 class="method-name" id="method-stopnotifications">
+          <span  aria-hidden="true" class="octicon octicon-link"></span>.stopNotifications(<i>characteristic</i>)
         </h4>
          <p>This method stops the notifications streaming from the specified characteristic on the device.</p>
-         <pre><code>fitbit
+         <pre><code>exampleDevice
   .stopNotifications('heart_rate_measurement'); </code></pre>
-  <h4 class="method-name" id="method-startnotifications">
-   <span  aria-hidden="true" class="octicon octicon-link"></span>.addCharacteristic('characteristic', 'service', properties)
+  <h4 class="method-name" id="method-addcharacteristic">
+   <span  aria-hidden="true" class="octicon octicon-link"></span>.addCharacteristic(<i>characteristic</i>, <i>service</i>, <i>properties</i>)
  </h4>
-  <p>This method adds Sabertooth support for the provided characteristic to device instance on which the method was called.</p>
-  <p>
-    <code>'characteristic': </code>a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance<br>
-    <code>'service': </code>a GATT service or 128-bit uuid string that resolves to a service accessible on the device instance<br>
-    <code>properties: </code>an array containing at least one property existing on the characteristic to be added. Currently, Sabertooth supports the properties <b>'read'</b>, <b>'write'</b>, and <b>'notify'</b>.
+  <p>This method adds Sabertooth support for the provided characteristic to device instance on which the method was called.
+    <br>
+    <u>Parameters:</u>
+    <br>
+    <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance<br>
+    <code>service</code> - a GATT service or 128-bit uuid string that resolves to a service accessible on the device instance<br>
+    <code>properties</code> - an array containing at least one property existing on the characteristic to be added. Currently, Sabertooth supports the properties <b>'read'</b>, <b>'write'</b>, and <b>'notify'</b>.
+    <br>
+    <u>Returns:</u>
+    <br>
+    Returns a boolean representing the success of the attempt to add the characteristic to the device instance where <code>true</code> represents success.
   </p>
   <blockquote >Note: For characteristics added to the device instance, Sabertooth cannot parse values read from the device or prepare values to be written to the device. Returned values from device calls to the .readValue() method will return an object containing the raw data returned from the device; device calls to the .writeValue() method will attempt to write the provided value directly to the device in its provided form.
   </blockquote>
   <br>
-  <pre><code>drone
-.addCharacteristic('9a66fd22-0800-9191-11e4-012d1540cb8e','9a66fd21-0800-9191-11e4-012d1540cb8e',['read','write','notify']); </code></pre>
+  <pre><code>exampleDevice.addCharacteristic('9a66fd22-0800-9191-11e4-012d1540cb8e','9a66fd21-0800-9191-11e4-012d1540cb8e',['read','write','notify']); </code></pre>
+  <p>In the above example, the <code>.addCharacteristic()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
         <hr>
         <h3 id="demo">
           Demo
