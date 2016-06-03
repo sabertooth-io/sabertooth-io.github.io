@@ -28,7 +28,7 @@
         <p class="view">
           <a href="https://github.com/sabertooth-io">View on GitHub</a>
           <br>
-          <a href="https://npmjs.com/package/web-bluetooth">View package on NPM</a>
+          <a href="https://npmjs.com/package/web-bluetooth">View package on npm</a>
           <br>
           View package on Bower (coming soon!)
         </p>
@@ -46,48 +46,47 @@
           <a href="#general-accessibility">General Accessibility</a>
           <br>
           <a href="#gatt-support">GATT Services Support</a>
-        </p>
-        <hr class="hr-methods">
-        <p>
+        <hr>
           <a href="#general-newdevice">Creating a new Bluetooth Device</a>
-          <a href="#general-methods">Device Methods</a>
-          <br><a href="#method-connect">.connect()</a>
-          <br><a href="#method-disconnect">.disconnect()</a>
-          <br><a href="#method-connected">.connected()</a>
-          <br><a href="#method-getvalue">.getValue()</a>
-          <br><a href="#method-writevalue">.writeValue()</a>
-          <br><a href="#method-startnotifications">.startNotifications()</a>
-          <br><a href="#method-stopnotifications">.stopNotifications()</a>
-          <br><a href="#method-addcharacteristic">.addCharacteristic()</a>
+          <br><a href="#general-methods">Device Methods</a>
+          <br>&#160;&#160;&#160;<a href="#method-connect">.connect()</a>
+          <br>&#160;&#160;&#160;<a href="#method-disconnect">.disconnect()</a>
+          <br>&#160;&#160;&#160;<a href="#method-connected">.connected()</a>
+          <br>&#160;&#160;&#160;<a href="#method-getvalue">.getValue()</a>
+          <br>&#160;&#160;&#160;<a href="#method-writevalue"> .writeValue()</a>
+          <br>&#160;&#160;&#160;<a href="#method-startnotifications">.startNotifications()</a>
+          <br>&#160;&#160;&#160;<a href="#method-stopnotifications">.stopNotifications()</a>
+          <br>&#160;&#160;&#160;<a href="#method-addcharacteristic">.addCharacteristic()</a>
         </p>
         <hr>
-        <h4>Demo</h4>
+        <h4>Demos</h4>
         <p>
-          <a href="#demo">Battery Service</a>
+          <a href="#demos">Battery Service</a>
+          <br><a href="#demos">Heart Rate Monitor</a>
         </p>
         <hr>
         <h4>Appendix</h4>
         <p>
-          <a href="#serviceschars">Fully Supported GATT Services &#38; GATT Characteristics</a>
+          <a href="#serviceschars">Authors &#38; Contributors</a>
         </p>
       </header>
       <section>
         <h3>
 <a id="intro" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bridging the gap between the web and the physical world through Bluetooth.</h3>
         <img class="intro-infographic" src="assets/BLE-WebInfographic.svg" height="80%" width="80%" horizontal-align="center">
-        <p>Bluetooth devices are everywhere, and as developers, we want to write useful, fun, and powerful applications for them. Until recently, this meant writing native applications that had to be installed on user devices- a burdensome process for both users and developers. With the number of Bluetooth devices around us, a more direct and intuitive interface was long overdue. Now, thanks to the <a href="https://www.w3.org/community/web-bluetooth/">Web Bluetooth Community Group</a> and their work to bring us the <a href="https://webbluetoothcg.github.io/web-bluetooth/">Web Bluetooth API</a>, we have the ability to interact directly with Bluetooth 4.0 devices through the browser. Connecting, reading, and writing to and from Bluetooth devices is all made possible through the Web Bluetooth API and modern web browsers like Chrome, Firefox, and Opera who are incresingly adding support for new features in the Web Bluetooth API Spec.</p>
-        <p>We at Sabertooth are excited by the potential for the Web Bluetooth API, but also recognize that developers like ourselves just want to build things, not spend time wading through documentation and hiking up the learning curve with every new technology we use. Sabertooth is an attempt to harness the power of the Web Bluetooth API and make it easily accessible to developers through a simple and intuitive framework. In short, we want you to start building powerful, browser-based Bluetooth applications quickly and effortlessly, and have fun doing it.</p>
+        <p>Bluetooth devices are everywhere, and as developers, we want to write useful, fun, and powerful applications for them. Until recently, this meant writing native applications that had to be installed on user devices- a burdensome process for both users and developers. With the number of Bluetooth devices around us, a more direct and intuitive interface was long overdue. Now, thanks to the <a href="https://www.w3.org/community/web-bluetooth/">Web Bluetooth Community Group</a> and their work to bring us the <a href="https://webbluetoothcg.github.io/web-bluetooth/">Web Bluetooth API</a>, we have the ability to interact directly with Bluetooth Low Energy (part of the Bluetooth 4.0 standard) devices through the browser. Connecting, reading, and writing to and from Bluetooth devices is all made possible through the Web Bluetooth API and modern web browsers like Chrome, Firefox, and Opera who are incresingly adding support for new features in the Web Bluetooth API Spec.</p>
+        <p>We at Sabertooth are excited by the potential for the Web Bluetooth API, but also recognize that developers like ourselves just want to build things, not spend time wading through documentation and hiking up the learning curve with every new technology we use. Sabertooth is an attempt to harness the power of the Web Bluetooth API and make it easily accessible to developers through a simple and intuitive library. In short, we want you to start building powerful, browser-based Bluetooth applications quickly and effortlessly, and have fun doing it.</p>
 
         <h3>
 <a id="overview" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
 
-        <p>Sabertooth is a configurable application framework for integrating bluetooth functionality with client-side Javascript.</p>
+        <p>Sabertooth is a configurable application library for integrating Bluetooth functionality with client-side Javascript.</p>
 
         <h3>
 <a id="getting-started" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
         <p>Sabertooth (currently v1.0.0) has a few easy ways to quickly get started, each one appealing to your preferences.</p>
-        <blockquote >Note: Sabertooth package names and file names appear as 'web-bluetooth' throughout the documentation, consistent with actual package names and file names you will encounter while working with Sabertooth.</blockquote>
+        <blockquote >Note: Sabertooth package names and file names appear as 'web-bluetooth' throughout the documentation, consistent with actual package names and file names you will encounter when searching for or working with Sabertooth.</blockquote>
         <br>
         <h4>Download</h4>
         <p>You can install Sabertooth by downloading our minified framework <a href="https://github.com/sabertooth-io/web-bluetooth/archive/master.zip" target="_blank">here</a>.</p>
@@ -157,14 +156,13 @@
         <br>
         <h3><span aria-hidden="true" class="octicon octicon-link"></span>GATT Attributes</h3>
         <p>A basic understanding of the <a href="https://developer.bluetooth.org/TechnologyOverview/Pages/GATT.aspx">Generic Attribute Profile (GATT)</a> is helpful when writing applications to interact with Bluetooth devices, but using Sabertooth requires an understanding of two main GATT attributes, GATT services and GATT characteristics.</p>
-        <p><b>GATT Services</b> are collections of GATT characteristics, and  <b>GATT Characteristics</b> are attributes that contain a single value. For example, the GATT service 'battery_service' contains the GATT characteristic 'battery_level', which itself contains the value of the device's battery level at a given time.</p>
+        <p><b>GATT Services</b> are collections of GATT characteristics, and  <b>GATT Characteristics</b> are attributes that contain values.</p>
           <img style="height: 250px" src="https://cdn-learn.adafruit.com/assets/assets/000/013/828/original/microcontrollers_GattStructure.png?1390836057" />
           <p>Sabertooth abstracts over core GATT services and GATT characteristics with special attention to GATT services and GATT characteristics that are more common and that are most applicable in the current stage of Bluetooth
           device availability, but also allows for the use of virtually any GATT service or GATT characteristic, as well as non-GATT services and non-GATT characteristics.</p>
-          <p>For the full list of normative GATT services click <a href="https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx" target="_blank">here</a>. As the Web Bluetooth API continues to be
-          developed and as this library matures, more service types will be made available.</p>
+          <p>For the complete list of normative GATT services click <a href="https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx" target="_blank">here</a>. As the Web Bluetooth API continues to be developed and as this library matures, full support for more service types will be made available.</p>
 
-          <p>For the full list of GATT services and GATT characteristics currently fully supported by Sabertooth click <a href="#serviceschars" target="_blank">here</a>.</p>
+          <!-- <p>For the complete list of GATT services and GATT characteristics currently fully supported by Sabertooth click <a href="#serviceschars" target="_blank">here</a>.</p> -->
 
         <h3 id="general-newdevice">
             <span aria-hidden="true" class="octicon octicon-link"></span>Creating a New Bluetooth Device
@@ -172,9 +170,9 @@
         <h4 class="method-name" id="method-newdevice">
           new BluetoothDevice(<i>filters</i>)
         </h4>
-        <p>To begin interacting with a Bluetooth device, create a new instance of <code>BluetoothDevice</code> and save the result to a variable. <code>BluetoothDevice</code> is a constructor that takes in an object <code>filters</code> containing attributes advertised by the bluetooth device.</p>
+        <p>To begin interacting with a Bluetooth device, create a new instance of <code>BluetoothDevice</code> and save the result to a variable. <code>BluetoothDevice</code> is a constructor that takes in an object <code>filters</code> containing attributes advertised by the Bluetooth device.</p>
         <p>
-          <u>Parameters:</u>
+          <b>Parameters</b>
           <br>
           <code>filters</code> - an object containing at least one valid filter corresponding to attributes advertised by the bluetooth device through which Sabertooth will attempt to request and connect to the device. Below is a schema representing the optional parameters that can be passed into the <code>BluetoothDevice</code> constructor to create a new <code>BluetoothDevice</code> instance. At least one of the key-value pairs below is needed to request a device and establish an initial connection.
           <blockquote >
@@ -188,28 +186,25 @@
 }</code></pre>
           <code>name </code> - the advertised the name of the device; often set by the manufacturer unless modified by the device user<br>
           <code>namePrefix</code> - an initial substring of any length that matches an advertised device name<br>
-          <code>uuid</code> - represents a 128-bit uuid. A valid uuid is a string that matches
+          <code>uuid</code> - represents a 128-bit <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (uuid). A valid uuid is a string that matches
           the regexp <code>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/</code><br>
           <code>services</code> - an array including at least one service being advertised by the device.
           <blockquote> Note: Not all services present on a device are advertised. Attempting to access a device by including a filter for a service present on a device but not being advertised by the device will cause the request to the device to fail.
           </blockquote>
           <br>
-          <u>Returns:</u>
+          <b>Returns</b>
           <br>
           A new <code>BluetoothDevice</code> instance on which Sabertooth methods can be called.
         </p>
-        <p>
-                  <u>Example:</u>
-        </p>
-
+        <b>Example</b>
         <pre><code>var exampleDevice = new BluetoothDevice({
   name: 'Surge'
 });</code></pre>
-        <p>In the example above, a new <code>BluetoothDevice</code> instance <code>blue</code> has been created with a valid request filter. The device <code>name</code> is one of the many properties advertised by Bluetooth devices and serves as a possible identifier for establishing initial connections to the device. The device's <b>name</b>, <b>namePrefix</b>, <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (<b>uuid</b>), or an advertised <b>service</b> are all valid options for requesting and establishing an initial device connection with Sabertooth.
 
+        <p>In the example above, a new <code>BluetoothDevice</code> instance <code>exampleDevice</code> has been created with a valid request filter. The device <code>name</code> is one of the many properties advertised by Bluetooth devices and serves as a possible identifier for establishing initial connections to the device. In this example, the device <code>name</code> will act as the provided filter.
         </p>
         <p>
-          Below are several other examples of ways in which a new <code>BluetoothDevice</code> instance can be created.
+          Below are several other examples of ways in which a new <code>BluetoothDevice</code> instance can be created using different filters or combinations of filters.
           <pre><code><i>/* Attempts to request a device advertising a name
  * beginning with the substring 'Po'
  */</i>
@@ -234,44 +229,77 @@ var exampleDevice = new BluetoothDevice({
         <h4 class="method-name" id="method-connect">
           .connect()
         </h4>
-        <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
+        <p>Method establishes a persistent connection with a Bluetooth device.</p>
+        <p>
+        <b>Parameters</b>
+        <br>None.
+        </p>
+        <p>
+        <b>Returns</b>
+        <br>A Promise to the device GATT server for the connected device.
+        </p>
+        <b>Example</b>
         <pre><code>exampleDevice.connect();</code></pre>
+        <p>In the example above, a connection to a previously created <code>BluetoothDevice</code> instance named <code>exampleDevice</code> will be attempted.
+        </p>
         <hr>
         <h4 class="method-name" id="method-disconnect">
           .disconnect()
         </h4>
-        <p>Method disconnects you from the device.</p>
+        <p>Method removes a previous connection with a Bluetooth device.</p>
+        <b>Parameters</b>
+        <p>None.</p>
+        <b>Returns</b>
+        <p>A boolean representing the success of the attempt to disconnect from the device where <code>true</code> represents success.</p>
+        <b>Example</b>
         <pre><code>exampleDevice.disconnect();</code></pre>
+        <p>In the example above, an attempt to disconnect from a previously created <code>BluetoothDevice</code> instance named <code>exampleDevice</code> will be attempted.
+        </p>
         <hr>
         <h4 class="method-name" id="method-connected">
           .connected()
         </h4>
-        <p>Method returns the current connection status of the device where <code>true</code> is connected and <code>false</code> is disconnected.</p>
+        <p>Method returns the current connection status of the device.</p>
+        <b>Parameters</b>
+        <p>None.</p>
+        <b>Returns</b>
+        <p>A boolean representing the success of the attempt to disconnect from the device where <code>true</code> is connected and <code>false</code> is disconnected.</p>
+        <b>Example</b>
         <pre><code>exampleDevice.connected();</code></pre>
+        <p>In the example above, an attempt will be made to check the connection status of a previously created <code>BluetoothDevice</code> instance named <code>exampleDevice</code>.
+        </p>
         <hr>
         <h4 class="method-name" id="method-getvalue">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue(<i>characteristic</i>)
         </h4>
-        <p>Method attempts to read the value of provided characteristic from a connected <code>BluetoothDevice</code> instance.
-        <br>
-        <u>Parameters:</u>
-        <br>
-        <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance.
-        <br>
-        <u>Returns:</u>
-        <br>
+        <p>Method attempts to read the value of provided characteristic from a connected <code>BluetoothDevice</code> instance.</p>
+        <b>Parameters</b>
+        <p>
+        <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device.
+        </p>
+        <b>Returns</b>
+        <p>
         An <code>object</code> containing the <a href="https://tc39.github.io/ecma262/#sec-arraybuffer-constructor">ArrayBuffer</a> value read from the connected <code>BluetoothDevice</code> instance, saved to the key <code>.rawValue</code>. For characteristics fully supported by Sabertooth, the return <code>object</code> will also include any parsed values for available descriptors of the requested characteristic as key-vlaue pairs with the descriptor as the key and the parsed value as the value.
         </p>
+        <b>Example</b>
         <pre><code>exampleDevice.getValue('battery_level')
-      .then(value => {
-        console.log(value.battery_level);
-      });</code></pre>
-        <p>In the above example, the <code>.getValue()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
+             .then(value => {
+                console.log(value.battery_level);
+             });</code></pre>
+        <p>In the above example, the <code>.getValue()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>. <code>value</code> contains the ArrayBuffer returned from the device stored to the property <code>rawValue</code>, and because 'battery_level' is a fully supported characteristic in Sabertooth, <code>value</code> also contains the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>. In this example, the parsed integer value representing the device's battery level is being logged to the console.</p>
         <hr>
         <h4 class="method-name" id="method-writevalue">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.writeValue(<i>characteristic</i>, <i>value</i>)
         </h4>
-        <p>Method takes a characteristic name and value. It changes the value of the specified characteristic to the value that was passed in.</p>
+        <p>Method takes a characteristic and value and attempts to write the provided value to the provided characteristic on the device.</p>
+        <b>Parameters</b>
+        <p>
+        <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance.
+        <code>value</code> - an ArrayBuffer or DataView
+        </p>
+        <b>Returns</b>
+        <p>A boolean representing the success of the attempt to write to the provided characteristic where <code>true</code> represents success.</p>
+        <b>Example</b>
         <pre><code>exampleDevice.writeValue('gap.device_name', 'myFitbit' )
       .then(writeSuccess => {
         console.log(writeSuccess);
@@ -307,7 +335,7 @@ var exampleDevice = new BluetoothDevice({
     <br>
     <u>Returns:</u>
     <br>
-    Returns a boolean representing the success of the attempt to add the characteristic to the device instance where <code>true</code> represents success.
+    A boolean representing the success of the attempt to add the characteristic to the device instance where <code>true</code> represents success.
   </p>
   <blockquote >Note: For characteristics added to the device instance, Sabertooth cannot parse values read from the device or prepare values to be written to the device. Returned values from device calls to the .readValue() method will return an object containing the raw data returned from the device; device calls to the .writeValue() method will attempt to write the provided value directly to the device in its provided form.
   </blockquote>
@@ -315,8 +343,8 @@ var exampleDevice = new BluetoothDevice({
   <pre><code>exampleDevice.addCharacteristic('9a66fd22-0800-9191-11e4-012d1540cb8e','9a66fd21-0800-9191-11e4-012d1540cb8e',['read','write','notify']); </code></pre>
   <p>In the above example, the <code>.addCharacteristic()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
         <hr>
-        <h3 id="demo">
-          Demo
+        <h3 id="demos">
+          Demos
         </h3>
         <h4>Battery Service</h4>
         <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
