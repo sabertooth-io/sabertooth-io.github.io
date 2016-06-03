@@ -46,30 +46,28 @@
           <a href="#general-accessibility">General Accessibility</a>
           <br>
           <a href="#gatt-support">GATT Services Support</a>
-        </p>
-        <hr class="hr-methods">
-        <p>
+        <hr>
           <a href="#general-newdevice">Creating a new Bluetooth Device</a>
-          <a href="#general-methods">Device Methods</a>
-          <br><a href="#method-connect">.connect()</a>
-          <br><a href="#method-disconnect">.disconnect()</a>
-          <br><a href="#method-connected">.connected()</a>
-          <br><a href="#method-getvalue">.getValue()</a>
-          <br><a href="#method-writevalue">.writeValue()</a>
-          <br><a href="#method-startnotifications">.startNotifications()</a>
-          <br><a href="#method-stopnotifications">.stopNotifications()</a>
-          <br><a href="#method-addcharacteristic">.addCharacteristic()</a>
-
+          <br><a href="#general-methods">Device Methods</a>
+          <br>&#160;&#160;&#160;<a href="#method-connect">.connect()</a>
+          <br>&#160;&#160;&#160;<a href="#method-disconnect">.disconnect()</a>
+          <br>&#160;&#160;&#160;<a href="#method-connected">.connected()</a>
+          <br>&#160;&#160;&#160;<a href="#method-getvalue">.getValue()</a>
+          <br>&#160;&#160;&#160;<a href="#method-writevalue"> .writeValue()</a>
+          <br>&#160;&#160;&#160;<a href="#method-startnotifications">.startNotifications()</a>
+          <br>&#160;&#160;&#160;<a href="#method-stopnotifications">.stopNotifications()</a>
+          <br>&#160;&#160;&#160;<a href="#method-addcharacteristic">.addCharacteristic()</a>
         </p>
         <hr>
-        <h4>Demo</h4>
+        <h4>Demos</h4>
         <p>
-          <a href="#demo">Battery Service</a>
+          <a href="#demos">Battery Service</a>
+          <br><a href="#demos">Heart Rate Monitor</a>
         </p>
         <hr>
         <h4>Appendix</h4>
         <p>
-          <a href="#serviceschars">Fully Supported GATT Services &#38; GATT Characteristics</a>
+          <a href="#serviceschars">Authors &#38; Contributors</a>
         </p>
       </header>
       <section>
@@ -200,7 +198,7 @@
           A new <code>BluetoothDevice</code> instance on which Sabertooth methods can be called.
         </p>
         <p>
-                  <u>Example:</u>
+        <u>Example:</u>
         </p>
 
         <pre><code>var exampleDevice = new BluetoothDevice({
@@ -235,34 +233,52 @@ var exampleDevice = new BluetoothDevice({
         <h4 class="method-name" id="method-connect">
           .connect()
         </h4>
-        <p>Method allows you to establish a persistent connection with a Bluetooth device.</p>
+        <p>Method establishes a persistent connection with a Bluetooth device.</p>
+        <p>
+        <b>Parameters</b>
+        <br>None.
+        </p>
+        <p>
+        <b>Returns</b>
+        <br>A Promise to the device GATT server for the connected device.
+        </p>
+        <b>Example</b>
         <pre><code>exampleDevice.connect();</code></pre>
         <hr>
         <h4 class="method-name" id="method-disconnect">
           .disconnect()
         </h4>
-        <p>Method disconnects you from the device.</p>
+        <p>Method removes a previous connection with a Bluetooth device.</p>
+        <b>Parameters</b>
+        <p>None.</p>
+        <b>Returns</b>
+        <p>A boolean representing the success of the attempt to disconnect from the device where <code>true</code> represents success.</p>
+        <b>Example</b>
         <pre><code>exampleDevice.disconnect();</code></pre>
         <hr>
         <h4 class="method-name" id="method-connected">
           .connected()
         </h4>
-        <p>Method returns the current connection status of the device where <code>true</code> is connected and <code>false</code> is disconnected.</p>
+        <p>Method returns the current connection status of the device.</p>
+        <b>Parameters</b>
+        <p>None.</p>
+        <b>Returns</b>
+        <p>A boolean representing the success of the attempt to disconnect from the device where <code>true</code> is connected and <code>false</code> is disconnected.</p>
+        <b>Example</b>
         <pre><code>exampleDevice.connected();</code></pre>
         <hr>
         <h4 class="method-name" id="method-getvalue">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.getValue(<i>characteristic</i>)
         </h4>
         <p>Method attempts to read the value of provided characteristic from a connected <code>BluetoothDevice</code> instance.
-        <br>
-        <u>Parameters:</u>
-        <br>
+        <b>Parameters</b>
+        <p>
         <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance.
-        <br>
-        <u>Returns:</u>
-        <br>
+        </p>
+        <b>Returns</b>
         An <code>object</code> containing the <a href="https://tc39.github.io/ecma262/#sec-arraybuffer-constructor">ArrayBuffer</a> value read from the connected <code>BluetoothDevice</code> instance, saved to the key <code>.rawValue</code>. For characteristics fully supported by Sabertooth, the return <code>object</code> will also include any parsed values for available descriptors of the requested characteristic as key-vlaue pairs with the descriptor as the key and the parsed value as the value.
         </p>
+        <b>Example</b>
         <pre><code>exampleDevice.getValue('battery_level')
       .then(value => {
         console.log(value.battery_level);
@@ -273,6 +289,14 @@ var exampleDevice = new BluetoothDevice({
           <span  aria-hidden="true" class="octicon octicon-link"></span>.writeValue(<i>characteristic</i>, <i>value</i>)
         </h4>
         <p>Method takes a characteristic name and value. It changes the value of the specified characteristic to the value that was passed in.</p>
+        <b>Parameters</b>
+        <p>
+        <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance.
+        <code>value</code> - an ArrayBuffer or DataView
+        </p>
+        <b>Returns</b>
+        <p>A boolean representing the success of the attempt to write to the provided characteristic where <code>true</code> represents success.</p>
+        <b>Example</b>
         <pre><code>exampleDevice.writeValue('gap.device_name', 'myFitbit' )
       .then(writeSuccess => {
         console.log(writeSuccess);
@@ -308,7 +332,7 @@ var exampleDevice = new BluetoothDevice({
     <br>
     <u>Returns:</u>
     <br>
-    Returns a boolean representing the success of the attempt to add the characteristic to the device instance where <code>true</code> represents success.
+    A boolean representing the success of the attempt to add the characteristic to the device instance where <code>true</code> represents success.
   </p>
   <blockquote >Note: For characteristics added to the device instance, Sabertooth cannot parse values read from the device or prepare values to be written to the device. Returned values from device calls to the .readValue() method will return an object containing the raw data returned from the device; device calls to the .writeValue() method will attempt to write the provided value directly to the device in its provided form.
   </blockquote>
@@ -316,8 +340,8 @@ var exampleDevice = new BluetoothDevice({
   <pre><code>exampleDevice.addCharacteristic('9a66fd22-0800-9191-11e4-012d1540cb8e','9a66fd21-0800-9191-11e4-012d1540cb8e',['read','write','notify']); </code></pre>
   <p>In the above example, the <code>.addCharacteristic()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
         <hr>
-        <h3 id="demo">
-          Demo
+        <h3 id="demos">
+          Demos
         </h3>
         <h4>Battery Service</h4>
         <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
