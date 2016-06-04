@@ -295,7 +295,7 @@ var exampleDevice = new BluetoothDevice({
         <b>Parameters</b>
         <p>
         <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance.
-        <code>value</code> - an ArrayBuffer or DataView
+        <br><code>value</code> - an ArrayBuffer or DataView
         </p>
         <b>Returns</b>
         <p>A boolean representing the success of the attempt to write to the provided characteristic where <code>true</code> represents success.</p>
@@ -309,19 +309,40 @@ var exampleDevice = new BluetoothDevice({
         <h4 class="method-name" id="method-startnotifications">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.startNotifications(<i>characteristic</i>, <i>callback</i>)
         </h4>
-        <p>Method takes a characteristic name and a callback function. Provided that the characteristic has a 'notify' property, .startNotifications() will pass the event object broadcasted by the characteristic as the parameter of the callback, and run the callback any time a new event occurs.</p>
-        <pre><code>exampleDevice.startNotifications('heart_rate_measurement', e => {
-          var newHR = e.heart_rate_measurement;
-          console.log(newHR);
-      }); </code></pre>
-        <p>This method allows us to access streams of data. In the above example, .startNotifications() accesses the heart_rate_measurement characteristic on a exampleDevice, and prints the heart rate to the console every time an event fires. This 'notifies' us of the heart rate at regular intervals. </p>
+        <p>Method takes a characteristic name and a callback function. Provided that the characteristic has a 'notify' property, .startNotifications() will pass the event object broadcasted by the characteristic as the parameter of the callback, and run the callback each time a new event occurs.</p>
+        <b>Parameters</b>
+        <p>
+        <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance.
+        <br><code>callback</code> - a callback triggered as result of a notification from the provided characteristic advertised by the device. The parameter <code>eventObj</code> will automatically be passed into <code>callback</code> for each notification received from the device.
+        <br><p class="level2Param"><code>eventObj</code> - an <code>object</code> passed as the sole parameter into the callback provided. <code>eventObj</code> contains the ArrayBuffer value notified from the connected <code>BluetoothDevice</code> instance, saved to the key <code>.rawValue</code>. For characteristics fully supported by Sabertooth, <code>eventObj</code> will also include any parsed values for available descriptors of the requested characteristic as key-vlaue pairs with the descriptor as the key and the parsed value as the value.
+        </p>
+        </p>
+        <b>Returns</b>
+        <p>
+        None.
+        </p>
+        <b>Example</b>
+        <pre><code>exampleDevice.startNotifications('heart_rate_measurement', eventObj => {
+                  var newHR = eventObj.heart_rate_measurement;
+                  console.log(newHR);
+              }); </code></pre>
+        <p>In the above example, the <code>.startNotifications()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which attempts to initiate a stream of notifications from the Bluetooth device, where the provided callback, in this example an anonymous function with the parameter <code>eventObj</code>, will be applied to the <code>eventObj</code> returned from each notification from the device. In this example, <code>eventObj</code> contains the ArrayBuffer returned from the device notification, stored to the property <code>rawValue</code>, and because 'heart_rate_measurement' is a fully supported characteristic in Sabertooth, <code>eventObj</code> also contains the parsed integer value for the device's heart rate measurement, stored on the <code>eventObj</code> object as the key <code>heart_rate_measurement</code>. In this example, the parsed integer value representing the notification's heart rate measurement is being logged to the console.</p>
         <hr>
          <h4 class="method-name" id="method-stopnotifications">
           <span  aria-hidden="true" class="octicon octicon-link"></span>.stopNotifications(<i>characteristic</i>)
         </h4>
-         <p>This method stops the notifications streaming from the specified characteristic on the device.</p>
-         <pre><code>exampleDevice
-  .stopNotifications('heart_rate_measurement'); </code></pre>
+         <p>This method stops the notifications from the provided characteristic for the <code>BluetoothDevice</code> instance.</p>
+         <p>
+         <b>Parameters</b>
+         <br>None.
+         </p>
+         <p>
+         <b>Returns</b>
+         <br>None.
+         </p>
+         <b>Example</b>
+         <pre><code>exampleDevice.stopNotifications('heart_rate_measurement'); </code></pre>
+         <p>In the above example, the <code>.stopNotifications()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which attempts to end a stream of notifications from the Bluetooth device.</p>
   <h4 class="method-name" id="method-addcharacteristic">
    <span  aria-hidden="true" class="octicon octicon-link"></span>.addCharacteristic(<i>characteristic</i>, <i>service</i>, <i>properties</i>)
  </h4>
