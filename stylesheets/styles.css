@@ -363,3 +363,8 @@ footer {
 .scrollToTop:hover {
   text-decoration: none;
 }
+#logo {
+  width: 3em;
+  padding: 0;
+  float: left;
+}
