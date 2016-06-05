@@ -21,15 +21,19 @@ $('a').click(function(){
     }, 300);
     return false;
 });
-$(window).scroll(function(){
-  if($(this).scrollTop() < 100) {
-    $('.scrollToTop').fadeIn();
-  }
-  else {
-    $('.scrollToTop').fadeOut();
-  }
-});
-$('.scrollToTop').click(function(){
-  $('html, body').animate({scrollTop: 0},800);
-  return false;
+$(document).ready(function(){
+  $(window).scroll(function(){
+    var scrollHeight = $(this).scrollTop();
+    console.log(scrollHeight);
+    if(scrollHeight > 200) {
+      $('.scrollToTop').fadeIn();
+    }
+    else {
+      $('.scrollToTop').fadeOut();
+    }
+  });
+  $('.scrollToTop').click(function(){
+    $('html, body').animate({scrollTop: 0},400);
+    return false;
+  });
 });
