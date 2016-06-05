@@ -88,13 +88,13 @@
         <h3>
 <a id="getting-started" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
-        <p>Sabertooth (currently v1.0.0) has a few easy ways to quickly get started, each one appealing to your preferences.</p>
+        <p>Sabertooth has a few easy ways to quickly get started, each one appealing to your preferences.</p>
         <blockquote >Note: Sabertooth package names and file names appear as 'web-bluetooth' throughout the documentation, consistent with actual package names and file names you will encounter when searching for or working with Sabertooth.</blockquote>
         <br>
-        <h4>Download</h4>
+        <!-- <h4>Download</h4>
         <p>You can install Sabertooth by downloading our minified framework <a href="https://github.com/sabertooth-io/web-bluetooth/archive/master.zip" target="_blank">here</a>.</p>
         <p>Make the library available by referencing it in your index.html file.</p>
-        <pre><code class="code">&#60;script&#62;/lib/web-bluetooth.js&#60;/script&#62;</code></pre>
+        <pre><code class="code">&#60;script&#62;/lib/web-bluetooth.js&#60;/script&#62;</code></pre> -->
 
         <h4>Install with npm</h4>
         <p>You can install Sabertooth as the npm package 'web-bluetooth' <a href="https://npmjs.com/package/web-bluetooth" target="_blank"> here</a>.</p>
@@ -102,8 +102,8 @@
         <p>Or run the command-line script below in the project directory in which you would like to use Sabertooth.</p>
         <pre><code class="code">$ npm install web-bluetooth</code></pre>
         <!--FIXME: We're not doing an iffy anymore, what is the right thing to show here?  -->
-        <p style="color:red;">Require('web-bluetooth') will load all of the files necessary to run Sabertooth.</p>
-        <pre><code style="color:red;" class="code">const bluetooth = require('web-bluetooth');</code></pre>
+        <p><code>require('web-bluetooth')</code> will load all of the files necessary to run Sabertooth.</p>
+        <pre><code class="code">const BluetoothDevice = require('web-bluetooth');</code></pre>
         <!-- <h4>Install with Bower</h4>
         <p>You can install web-bluetooth with <a href="http://bower.io/" target="_blank">Bower</a></p>
         <pre><code class="code">$ bower install web-bluetooth</code></pre> -->
@@ -161,8 +161,7 @@
         <p>A basic understanding of the <a href="https://developer.bluetooth.org/TechnologyOverview/Pages/GATT.aspx">Generic Attribute Profile (GATT)</a> is helpful when writing applications to interact with Bluetooth devices, but using Sabertooth requires an understanding of two main GATT attributes, GATT services and GATT characteristics.</p>
         <p><b>GATT Services</b> are collections of GATT characteristics, and  <b>GATT Characteristics</b> are attributes that contain values.</p>
           <img style="height: 250px" src="https://cdn-learn.adafruit.com/assets/assets/000/013/828/original/microcontrollers_GattStructure.png?1390836057" />
-          <p>Sabertooth abstracts over core GATT services and GATT characteristics with special attention to GATT services and GATT characteristics that are more common and that are most applicable in the current stage of Bluetooth
-          device availability, but also allows for the use of virtually any GATT service or GATT characteristic, as well as non-GATT services and non-GATT characteristics.</p>
+          <p>Sabertooth abstracts over the core features of the Web-Bluetooth API, and allows for the use of virtually any GATT service or GATT characteristic, as well as non-GATT services and non-GATT characteristics.</p>
           <p>For the complete list of normative GATT services click <a href="https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx" target="_blank">here</a>. As the Web Bluetooth API continues to be developed and as this library matures, full support for more service types will be made available.</p>
 
           <!-- <p>For the complete list of GATT services and GATT characteristics currently fully supported by Sabertooth click <a href="#serviceschars" target="_blank">here</a>.</p> -->
