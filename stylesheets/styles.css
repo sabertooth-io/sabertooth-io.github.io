@@ -352,3 +352,14 @@ footer {
 .level2Param {
   margin-left: 3em;
 }
+.scrollToTop {
+  width:60px;
+  padding:10px;
+  bottom:10px;
+  right:10px;
+  position: fixed;
+  display:none;
+}
+.scrollToTop:hover {
+  text-decoration: none;
+}
