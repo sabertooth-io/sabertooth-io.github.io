@@ -347,25 +347,29 @@ var exampleDevice = new BluetoothDevice({
          <b>Example</b>
          <pre><code>exampleDevice.stopNotifications('heart_rate_measurement'); </code></pre>
          <p>In the above example, the <code>.stopNotifications()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which attempts to end a stream of notifications from the Bluetooth device.</p>
+  <hr>
   <h4 class="method-name" id="method-addcharacteristic">
    <span  aria-hidden="true" class="octicon octicon-link"></span>.addCharacteristic(<i>characteristic</i>, <i>service</i>, <i>properties</i>)
  </h4>
   <p>This method adds Sabertooth support for the provided characteristic to device instance on which the method was called.
-    <br>
-    <u>Parameters:</u>
+    <br><br>
+    <b>Parameters:</b>
     <br>
     <code>characteristic</code> - a GATT characteristic or 128-bit uuid string that resolves to a characteristic accessible on the device instance<br>
     <code>service</code> - a GATT service or 128-bit uuid string that resolves to a service accessible on the device instance<br>
     <code>properties</code> - an array containing at least one property existing on the characteristic to be added. Currently, Sabertooth supports the properties <b>'read'</b>, <b>'write'</b>, and <b>'notify'</b>.
-    <br>
-    <u>Returns:</u>
+    <br><br>
+    <b>Returns:</b>
     <br>
     A boolean representing the success of the attempt to add the characteristic to the device instance where <code>true</code> represents success.
   </p>
   <blockquote >Note: For characteristics added to the device instance, Sabertooth cannot parse values read from the device or prepare values to be written to the device. Returned values from device calls to the .readValue() method will return an object containing the raw data returned from the device; device calls to the .writeValue() method will attempt to write the provided value directly to the device in its provided form.
   </blockquote>
   <br>
-  <pre><code>exampleDevice.addCharacteristic('9a66fd22-0800-9191-11e4-012d1540cb8e','9a66fd21-0800-9191-11e4-012d1540cb8e',['read','write','notify']); </code></pre>
+  <pre><code>exampleDevice.addCharacteristic(
+    '9a66fd22-0800-9191-11e4-012d1540cb8e',
+    '9a66fd21-0800-9191-11e4-012d1540cb8e',
+    ['read','write','notify']); </code></pre>
   <p>In the above example, the <code>.addCharacteristic()</code> method is called on the <code>BluetoothDevice</code> instance <code>exampleDevice</code>, which returns an <code>object</code>, in this example referenced as <code>value</code>, containing the parsed integer value for the instance's battery level, stored on the <code>value</code> object as the key <code>battery_level</code>.</p>
         <hr>
         <h3 id="demos">
@@ -393,6 +397,12 @@ var exampleDevice = new BluetoothDevice({
             <span id="authors-contributors" aria-hidden="true" class="octicon octicon-link"></span>Authors and Contributors
           </h3>
           <p>Sabertooth is a team of four software developers enthusiastic to be contributing to the open source community. Visit their GitHub pages for more information.</p>
+          <ul>
+            <li>Aaron Peltz | <a href="https://github.com/apeltz/" target="_blank">GitHub</a></li>
+            <li>Alex Patch | <a href="https://github.com/the-gingerbread-man/" target="_blank">GitHub</a></li>
+            <li>Carlos Corral | <a href="https://github.com/ccorral/" target="_blank">GitHub</a></li>
+            <li>Daniel Lee | <a href="https://github.com/dslee393/" target="_blank">GitHub</a></li>
+          </ul>
       </section>
     </div>
     <script src="scripts/scale.fix.js"></script>
