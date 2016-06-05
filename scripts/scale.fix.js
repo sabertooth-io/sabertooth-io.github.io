@@ -22,17 +22,14 @@ $('a').click(function(){
     return false;
 });
 $(window).scroll(function(){
-  var scrollHeight = $(this).scrollTop();
-  console.log(scrollHeight);
-  if(scrollHeight > 200) {
+  if($(this).scrollTop() < 100) {
     $('.scrollToTop').fadeIn();
   }
   else {
     $('.scrollToTop').fadeOut();
   }
 });
-
 $('.scrollToTop').click(function(){
-  $('html, body').animate({scrollTop: 0},400);
+  $('html, body').animate({scrollTop: 0},800);
   return false;
 });

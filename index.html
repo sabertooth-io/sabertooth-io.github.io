@@ -18,6 +18,7 @@
   </head>
 
   <body>
+    <a href="#" ><img class="scrollToTop" src="./assets/scroll.png"></img></a>
     <div class="wrapper">
       <header>
         <h1>Sabertooth</h1>
@@ -65,8 +66,8 @@
         <hr>
         <h4>Demos</h4>
         <p>
+          <a href="#demos">Heart Rate Service</a><br>
           <a href="#demos">Battery Service</a>
-          <br><a href="#demos">Heart Rate Monitor</a>
         </p>
         <hr>
         <h4>Appendix</h4>
@@ -78,7 +79,7 @@
         <h3>
 <a id="intro" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bridging the gap between the web and the physical world through Bluetooth.</h3>
         <img class="intro-infographic" src="assets/BLE-WebInfographic.svg" height="80%" width="80%" horizontal-align="center">
-        <p>Bluetooth devices are everywhere, and as developers, we want to write useful, fun, and powerful applications for them. Until recently, this meant writing native applications that had to be installed on user devices- a burdensome process for both users and developers. With the number of Bluetooth devices around us, a more direct and intuitive interface was long overdue. Now, thanks to the <a href="https://www.w3.org/community/web-bluetooth/">Web Bluetooth Community Group</a> and their work to bring us the <a href="https://webbluetoothcg.github.io/web-bluetooth/">Web Bluetooth API</a>, we have the ability to interact directly with Bluetooth Low Energy (part of the Bluetooth 4.0 standard) devices through the browser. Connecting, reading, and writing to and from Bluetooth devices is all made possible through the Web Bluetooth API and modern web browsers like Chrome, Firefox, and Opera who are incresingly adding support for new features in the Web Bluetooth API Spec.</p>
+        <p>Bluetooth devices are everywhere, and as developers, we want to write useful, fun, and powerful applications for them. Until recently, this meant writing native applications that had to be installed on user devices- a burdensome process for both users and developers. With the number of Bluetooth devices around us, a more direct and intuitive interface was long overdue. <br><br>Now, thanks to the <a href="https://www.w3.org/community/web-bluetooth/">Web Bluetooth Community Group</a> and their work to bring us the <a href="https://webbluetoothcg.github.io/web-bluetooth/">Web Bluetooth API</a>, we have the ability to interact directly with Bluetooth Low Energy (part of the Bluetooth 4.0 standard) devices through the browser. Connecting, reading, and writing to and from Bluetooth devices is all made possible through the Web Bluetooth API and modern web browsers like Chrome, Firefox, and Opera who are incresingly adding support for new features in the Web Bluetooth API Spec.</p>
         <p>We at Sabertooth are excited by the potential for the Web Bluetooth API, but also recognize that developers like ourselves just want to build things, not spend time wading through documentation and hiking up the learning curve with every new technology we use. Sabertooth is an attempt to harness the power of the Web Bluetooth API and make it easily accessible to developers through a simple and intuitive library. In short, we want you to start building powerful, browser-based Bluetooth applications quickly and effortlessly, and have fun doing it.</p>
 
         <h3>
@@ -370,9 +371,16 @@ var exampleDevice = new BluetoothDevice({
         <h3 id="demos">
           Demos
         </h3>
+        <h4>Heart Rate Service</h4>
+        <a href="https://github.com/sabertooth-io/demo-heart_rate_service" target="_blank"><img src="assets/heart_rate_service.png" height="80%" width="80%" horizontal-align="center"></a>
+        <p>This demo uses the Sabertooth library to connect to a heart rate monitor broadcasting a Heart Rate Service characteristic and reads it's measurement.</p>
+        <p>
+          <a href="https://heart-rate-demo.herokuapp.com/" target="_blank">View the demo.</a> |
+          <a href="https://github.com/sabertooth-io/demo-heart_rate_service" target="_blank">Visit the GitHub page.</a>
+        </p>
         <h4>Battery Service</h4>
         <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank"><img src="assets/battery_service.png" height="80%" width="80%" horizontal-align="center"></a>
-        <p>This demo uses the Web-Bluetooth library to connect to a device broadcasting a Battery Service characteristic and reads it's level.</p>
+        <p>This demo uses the Sabertooth library to connect to a device broadcasting a Battery Service characteristic and reads it's level.</p>
         <p>
           <a href="https://demo-battery-service.herokuapp.com/" target="_blank">View the demo.</a> |
           <a href="https://github.com/sabertooth-io/demo-battery_service" target="_blank">Visit the GitHub page.</a>
@@ -384,10 +392,10 @@ var exampleDevice = new BluetoothDevice({
           <h3>
             <span id="authors-contributors" aria-hidden="true" class="octicon octicon-link"></span>Authors and Contributors
           </h3>
-          <p>Sabertooth is a team of four software developers enthusiastic to be contributing to the open source community. Visit their GitHub page for more information.</p>
+          <p>Sabertooth is a team of four software developers enthusiastic to be contributing to the open source community. Visit their GitHub pages for more information.</p>
       </section>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+    <script src="scripts/scale.fix.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 
