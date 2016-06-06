@@ -186,15 +186,16 @@
   name: 'device_name',
   namePrefix: 'devicePrefix',
   uuid: 'uuid',
-  services: ['service', 'service', 'service']
+  services: ['service', 'service', 'service'],
+  <i>optional_services: ['service','service','service']</i>
 }</code></pre>
           <code>name </code> - the advertised the name of the device; often set by the manufacturer unless modified by the device user<br>
           <code>namePrefix</code> - an initial substring of any length that matches an advertised device name<br>
           <code>uuid</code> - represents a 128-bit <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (uuid). A valid uuid is a string that matches
           the regexp <code>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/</code><br>
           <code>services</code> - an array including at least one service being advertised by the device.
-          <blockquote> Note: Not all services present on a device are advertised. Attempting to access a device by including a filter for a service present on a device but not being advertised by the device will cause the request to the device to fail.
-          </blockquote>
+          <code>optional_services</code> - an array of services for which access permissions will be allowed, following a successful connection to the device.
+          <blockquote> Note: Not all services present on a device are advertised. Attempting to access a device by including a filter for a service present on a device but not being advertised by the device will cause the request to the device to fail. <code>optional_services</code> is not a required parameter. Any services included in <code>services</code> will be allowed access permissions to the device, so a service need not be included in <code>optional_services</code> if the same services has already been included in <code>services</code>. Services can not be added to a device after the device instance has been created.</blockquote>
           <br>
           <b>Returns</b>
           <br>
